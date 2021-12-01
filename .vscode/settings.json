@@ -1,0 +1,7 @@
+{
+  "files.exclude": {
+    ".vscode": true,
+    "target": true
+  },
+  "java.configuration.updateBuildConfiguration": "automatic"
+}
