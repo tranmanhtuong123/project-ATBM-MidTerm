@@ -27,7 +27,7 @@ public class EncodeFile {
     private static final int BUFFER_SIZE = 1024 * 4;
 
     public static void encrypt(String fileInputPath, String folderOuputPath, String keyType, String keyContent,
-            String algorithm, String mode, String padding) throws Exception {
+            String algo, String mode, String padding) throws Exception {
 
         Security.addProvider(new BouncyCastleProvider());
         String fileInputName = new File(fileInputPath).getName();
@@ -36,7 +36,7 @@ public class EncodeFile {
         FileInputStream fis = new FileInputStream(fileInputPath);
         FileOutputStream fos = new FileOutputStream(fileOutputPath);
 
-        Cipher cipher = CipherFile(keyType, keyContent, fis, fos, Cipher.ENCRYPT_MODE, algorithm, mode,
+        Cipher cipher = CipherFile(keyType, keyContent, fis, fos, Cipher.ENCRYPT_MODE, algo, mode,
                 padding);
         CipherOutputStream cos = new CipherOutputStream(fos, cipher);
 
@@ -55,7 +55,7 @@ public class EncodeFile {
     }
 
     public static void decrypt(String fileInputPath, String folderOuputPath, String keyType, String keyContent,
-            String algorithm, String mode, String padding) throws Exception {
+            String algo, String mode, String padding) throws Exception {
 
         Security.addProvider(new BouncyCastleProvider());
         String fileInputName = new File(fileInputPath).getName().replace(".en", "");
@@ -67,7 +67,7 @@ public class EncodeFile {
         FileInputStream fis = new FileInputStream(fileInputPath);
         FileOutputStream fos = new FileOutputStream(fileOutputPath);
 
-        Cipher cipher = CipherFile(keyType, keyContent, fis, fos, Cipher.DECRYPT_MODE, algorithm, mode,
+        Cipher cipher = CipherFile(keyType, keyContent, fis, fos, Cipher.DECRYPT_MODE, algo, mode,
                 padding);
         CipherInputStream cis = new CipherInputStream(fis, cipher);
 
@@ -86,7 +86,7 @@ public class EncodeFile {
     }
 
     public static Cipher CipherFile(String keyType, String keyContent, FileInputStream fis, FileOutputStream fos,
-            int modeOP, String algorithm, String mode, String padding) throws Exception {
+            int modeOP, String algo, String mode, String padding) throws Exception {
 
         Key key = null;
         byte[] iv = new byte[16];
@@ -103,34 +103,34 @@ public class EncodeFile {
 
         if (keyType.equals("PlainText")) {
             byte[] decodedKey = Base64.getDecoder().decode(keyContent);
-            key = new SecretKeySpec(decodedKey, 0, decodedKey.length, algorithm);
-        } else if (Warehouse.listSymmetricAlgo.contains(algorithm)) {
+            key = new SecretKeySpec(decodedKey, 0, decodedKey.length, algo);
+        } else if (Warehouse.listSymmetricAlgo.contains(algo)) {
             if (keyType.equals("File Key")) {
-                key = KeyStore.keySYMRSA(keyContent, algorithm, modeOP, Warehouse.iv, fos, fis);
+                key = KeyStore.keySYMRSA(keyContent, algo, modeOP, Warehouse.iv, fos, fis);
             } else {
-                key = KeyStore.keySYM(keyType, keyContent, algorithm, modeOP);
+                key = KeyStore.keySYM(keyType, keyContent, algo, modeOP);
             }
-        } else if (Warehouse.listPBEAlgo.contains(algorithm)) {
+        } else if (Warehouse.listPBEAlgo.contains(algo)) {
             if (keyType.equals("File Key")) {
-                key = KeyStore.keyPBERSA(keyContent, algorithm, modeOP, Warehouse.iv, fos, fis);
+                key = KeyStore.keyPBERSA(keyContent, algo, modeOP, Warehouse.iv, fos, fis);
             } else {
-                key = KeyStore.keyPBE(keyContent, algorithm);
+                key = KeyStore.keyPBE(keyContent, algo);
             }
         } else {
-            key = KeyStore.keyRSAAES(keyContent, algorithm, mode, padding, modeOP, Warehouse.iv, fos, fis);
+            key = KeyStore.keyRSAAES(keyContent, algo, mode, padding, modeOP, Warehouse.iv, fos, fis);
         }
 
-        String cipherInstance = algorithm + "/" + mode + "/" + padding;
-        if (Warehouse.listPBEAlgo.contains(algorithm)) {
-            cipherInstance = algorithm;
-        } else if (algorithm.equals("RSA")) {
+        String cipherInstance = algo + "/" + mode + "/" + padding;
+        if (Warehouse.listPBEAlgo.contains(algo)) {
+            cipherInstance = algo;
+        } else if (algo.equals("RSA")) {
             cipherInstance = "AES" + "/" + mode + "/" + "PKCS5Padding";
         }
         Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
         if (Warehouse.listIVRequired.contains(mode)) {
             IvParameterSpec ivParameterSpec = new IvParameterSpec(Warehouse.iv);
             cipher.init(modeOP, key, ivParameterSpec);
-        } else if (Warehouse.listPBEAlgo.contains(algorithm)) {
+        } else if (Warehouse.listPBEAlgo.contains(algo)) {
             byte[] salt = new byte[8];
             PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 42);
             cipher.init(modeOP, key, pbeParamSpec);

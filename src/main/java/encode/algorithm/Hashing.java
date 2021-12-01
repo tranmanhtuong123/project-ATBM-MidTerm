@@ -17,11 +17,11 @@ public class Hashing {
 
     }
 
-    public String hashFile(String fileName, String algorithm) throws Exception {
+    public String hashFile(String fileName, String algo) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
         byte[] buffer = new byte[1024];
         int count = 0;
-        MessageDigest mess = MessageDigest.getInstance(algorithm, "BC");
+        MessageDigest mess = MessageDigest.getInstance(algo, "BC");
         FileInputStream bis = new FileInputStream(fileName);
         while ((count = bis.read(buffer)) > 0) {
             mess.update(buffer, 0, count);
@@ -32,9 +32,9 @@ public class Hashing {
 
     }
 
-    public String hashPlainText(String input, String algorithm) throws Exception {
+    public String hashPlainText(String input, String algo) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
-        MessageDigest mess = MessageDigest.getInstance(algorithm, "BC");
+        MessageDigest mess = MessageDigest.getInstance(algo, "BC");
         byte[] hash = mess.digest(input.getBytes(StandardCharsets.UTF_8));
         String sha256hex = new String(Hex.encode(hash));
         return sha256hex;
