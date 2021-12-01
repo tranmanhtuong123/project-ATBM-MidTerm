@@ -68,7 +68,7 @@ public class GenerateKeyController implements Initializable {
             if (!main.getValue().equals("")) {
                 outputTextField.setText(main.getValue());
             } else {
-                outputTextField.setText("Xong roi");
+                outputTextField.setText("Accomplished");
             }
             startButton.setDisable(false);
         });
