@@ -19,7 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("button/GenerateKey.fxml"), 640, 480);
+        scene = new Scene(loadFXML("main.fxml"), 563, 300);
         stage.setScene(scene);
         stage.show();
     }
@@ -30,13 +30,13 @@ public class App extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml));
-        return fxmlLoader.load();
+        // return fxmlLoader.load();
 
-        // AnchorPane root = fxmlLoader.load();
-        // Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
-        // root.getChildren().add(pane);
-        // root.requestFocus();
-        // return root;
+        AnchorPane root = fxmlLoader.load();
+        Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
+        root.getChildren().add(pane);
+        root.requestFocus();
+        return root;
 
     }
 
