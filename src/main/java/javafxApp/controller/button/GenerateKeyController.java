@@ -184,7 +184,7 @@ public class GenerateKeyController implements Initializable {
     private void openSymmetric(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
         Pane pane = FXMLLoader.load(App.class.getResource("button/Symmetric.fxml"));
-        root.getChildren().clear();
+        root.getChildren().remove(pane1);
         root.getChildren().add(pane);
     }
 
@@ -192,7 +192,7 @@ public class GenerateKeyController implements Initializable {
     private void openAsymmetric(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
         Pane pane = FXMLLoader.load(App.class.getResource("button/Asymmetric.fxml"));
-        root.getChildren().clear();
+        root.getChildren().remove(pane1);
         root.getChildren().add(pane);
 
     }
@@ -201,7 +201,7 @@ public class GenerateKeyController implements Initializable {
     private void openPBE(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
         Pane pane = FXMLLoader.load(App.class.getResource("button/PBE.fxml"));
-        root.getChildren().clear();
+        root.getChildren().remove(pane1);
         root.getChildren().add(pane);
 
     }
@@ -210,7 +210,7 @@ public class GenerateKeyController implements Initializable {
     private void openHashing(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
         Pane pane = FXMLLoader.load(App.class.getResource("button/Hashing.fxml"));
-        root.getChildren().clear();
+        root.getChildren().remove(pane1);
         root.getChildren().add(pane);
     }
 

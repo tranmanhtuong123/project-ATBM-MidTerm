@@ -157,7 +157,7 @@ public class PBEController implements Initializable {
     private void back(ActionEvent event) throws IOException{
         AnchorPane root = (AnchorPane) pane1.getParent();
         Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
-        root.getChildren().clear();
+        root.getChildren().remove(pane1);
         root.getChildren().add(pane);
     }
 
