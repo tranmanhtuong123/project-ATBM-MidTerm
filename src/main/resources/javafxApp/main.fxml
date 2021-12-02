@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="563.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxApp.controller.button.LayoutMain">
    <children>
-      <ImageView fitHeight="122.0" fitWidth="200.0" layoutX="189.0" layoutY="269.0">
-         <image>
-            <Image url="@button/img/autodinogif.gif" />
-         </image>
-      </ImageView>
+      <Button fx:id="nextButton" layoutX="339.0" layoutY="357.0" mnemonicParsing="false" onAction="#nextMedia" prefHeight="29.0" prefWidth="79.0" text="NEXT">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Slider fx:id="volumeSlider" layoutX="439.0" layoutY="365.0" max="100.0" prefHeight="14.0" prefWidth="110.0" value="50.0" />
+      <Button fx:id="resetButton" layoutX="181.0" layoutY="357.0" mnemonicParsing="false" onAction="#resetMedia" prefHeight="14.0" prefWidth="79.0" text="RESET">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="pauseButton" layoutX="102.0" layoutY="357.0" mnemonicParsing="false" onAction="#pauseMedia" prefHeight="29.0" prefWidth="79.0" text="PAUSE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="playButton" layoutX="23.0" layoutY="357.0" mnemonicParsing="false" onAction="#playMedia" prefHeight="29.0" prefWidth="79.0" text="PLAY">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="previousButton" layoutX="260.0" layoutY="357.0" mnemonicParsing="false" onAction="#previousMedia" prefHeight="14.0" prefWidth="79.0" text="PREVIOUS">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <ProgressBar fx:id="songProgressBar" layoutY="332.0" prefHeight="18.0" prefWidth="563.0" progress="0.0" />
    </children>
 </AnchorPane>

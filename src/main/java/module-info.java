@@ -3,6 +3,10 @@ module javafxApp {
 	requires javafx.fxml;
 	requires org.bouncycastle.provider;
 	requires org.apache.commons.io;
+	requires javafx.media;
+	requires org.kordamp.ikonli.core;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.fontawesome;
 
 	opens javafxApp to javafx.fxml;
 
