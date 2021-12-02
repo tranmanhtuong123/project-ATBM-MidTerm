@@ -9,42 +9,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="540.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxApp.controller.button.GenerateKeyController">
+<Pane fx:id="pane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="563.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxApp.controller.button.GenerateKeyController">
    <children>
-        <Button layoutX="407.0" layoutY="77.0" mnemonicParsing="false" onAction="#openAsymmetric" style="-fx-pref-width: 100px;" text="Asymmetric">
+        <Button layoutX="434.0" layoutY="75.0" mnemonicParsing="false" onAction="#openAsymmetric" style="-fx-pref-width: 100px;" text="Asymmetric">
          <font>
             <Font size="14.0" />
          </font></Button>
-        <Button layoutX="407.0" layoutY="141.0" mnemonicParsing="false" onAction="#openPBE" style="-fx-pref-width: 100px;" text="PBE">
+        <Button layoutX="434.0" layoutY="138.0" mnemonicParsing="false" onAction="#openPBE" style="-fx-pref-width: 100px;" text="PBE">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="407.0" layoutY="14.0" mnemonicParsing="false" onAction="#openSymmetric" style="-fx-pref-width: 100px;" text="Symmetric">
+      <Button layoutX="434.0" layoutY="14.0" mnemonicParsing="false" onAction="#openSymmetric" style="-fx-pref-width: 100px;" text="Symmetric">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="407.0" layoutY="201.0" mnemonicParsing="false" onAction="#openHashing" style="-fx-pref-width: 100px;" text="Hashing">
+      <Button layoutX="434.0" layoutY="201.0" mnemonicParsing="false" onAction="#openHashing" style="-fx-pref-width: 100px;" text="Hashing">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Pane layoutX="14.0" layoutY="12.0" prefHeight="219.0" prefWidth="354.0" style="-fx-border-color: black;">
+      <Pane layoutX="14.0" layoutY="12.0" prefHeight="219.0" prefWidth="385.0" style="-fx-border-color: black;">
          <children>
-            <Label layoutX="16.0" layoutY="73.0" text="Type" />
-            <ComboBox fx:id="typeCombobox" layoutX="54.0" layoutY="69.0" onAction="#keyTypeAlgoSelect" prefHeight="25.0" prefWidth="75.0" />
-            <Label layoutX="144.0" layoutY="58.0" text="Algorithms" />
-            <ComboBox fx:id="algoCombobox" layoutX="226.0" layoutY="54.0" prefHeight="25.0" prefWidth="100.0" />
-            <Label fx:id="keyTypeLabel" layoutX="149.0" layoutY="98.0" text="Key Type" />
-            <ComboBox fx:id="keySizeCombobox" layoutX="226.0" layoutY="94.0" onAction="#keyTypeSelect" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="14.0" layoutY="82.0" text="Type" />
+            <ComboBox fx:id="typeCombobox" layoutX="63.0" layoutY="78.0" onAction="#keyTypeAlgoSelect" prefHeight="25.0" prefWidth="94.0" />
+            <Label layoutX="177.0" layoutY="58.0" text="Algorithms" />
+            <ComboBox fx:id="algoCombobox" layoutX="253.0" layoutY="54.0" prefHeight="25.0" prefWidth="100.0" />
+            <Label fx:id="keyTypeLabel" layoutX="182.0" layoutY="98.0" text="Key Type" />
+            <ComboBox fx:id="keySizeCombobox" layoutX="253.0" layoutY="94.0" onAction="#keyTypeSelect" prefHeight="25.0" prefWidth="100.0" />
             <Label fx:id="inputFileLabel" layoutX="16.0" layoutY="140.0" text="File Key Name" />
             <TextField fx:id="inputFileTextField" layoutX="119.0" layoutY="136.0" prefHeight="25.0" prefWidth="134.0" />
             <Label fx:id="outputFileLabel" layoutX="16.0" layoutY="182.0" text="File Output Name" />
             <TextField fx:id="outputTextField" editable="false" layoutX="119.0" layoutY="178.0" prefHeight="25.0" prefWidth="134.0" />
-            <Text layoutX="110.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GenerateKey">
+            <Text layoutX="125.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GenerateKey">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="outputFileButton" layoutX="271.0" layoutY="178.0" mnemonicParsing="false" onAction="#openOutputFile" text="Browse" />
+            <Button fx:id="outputFileButton" layoutX="299.0" layoutY="178.0" mnemonicParsing="false" onAction="#openOutputFile" text="Browse" />
          </children>
       </Pane>
       <Button fx:id="startButton" layoutX="82.0" layoutY="243.0" mnemonicParsing="false" onAction="#start" prefHeight="25.0" prefWidth="48.0" text="Start" />
