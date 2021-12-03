@@ -1,4 +1,4 @@
-package javafxApp.controller.button;
+package javafxApp.controller.music;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -22,7 +22,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import javafxApp.App;
 
-public class LayoutMain implements Initializable{
+public class LayoutMusic implements Initializable{
 	
 	@FXML
 	private Pane pane;
