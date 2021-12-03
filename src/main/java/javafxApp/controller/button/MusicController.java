@@ -75,19 +75,6 @@ public class MusicController implements Initializable {
         mediaPlayer.play();
     }
 
-    @FXML
-    // public void actionMedia(ActionEvent actionEvent) {
-
-    //     String s = audioControl.getIconLiteral();
-    //     if (s.equals("fa-play")) {
-    //         audioControl.setIconLiteral("fa-pause");
-    //         mediaPlayer.play();
-    //     } else if (s.equals("fa-pause")) {
-    //         audioControl.setIconLiteral("fa-play");
-    //         mediaPlayer.pause();
-    //     }
-    // }
-
     public void checkCheckBox(ActionEvent actionEvent) {
         if (checkBoxVolume.isSelected()) {
             mediaPlayer.setVolume(0);
