@@ -73,7 +73,7 @@ public class App extends Application {
 
         mainWindow = new Stage();
         // mainWindow.initStyle(StageStyle.UNDECORATED); // an thanh bar
-        scene = new Scene(loadFXML(fxml), 563, 370);
+        scene = new Scene(loadFXML(fxml), 563, 365);
 
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         mainWindow.setX(bounds.getMinX() + bounds.getWidth() / 2 - 570 / 2);
