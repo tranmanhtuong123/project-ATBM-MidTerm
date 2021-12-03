@@ -160,6 +160,8 @@ public class PBEController implements Initializable {
         Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
+        pane.setLayoutX(0);
+        pane.setLayoutY(25);
     }
 
     @Override

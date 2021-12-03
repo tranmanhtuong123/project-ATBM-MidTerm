@@ -187,6 +187,8 @@ public class GenerateKeyController implements Initializable {
         Pane pane = FXMLLoader.load(App.class.getResource("button/Symmetric.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
+        pane.setLayoutX(0);
+        pane.setLayoutY(25);
     }
 
     @FXML
@@ -195,7 +197,8 @@ public class GenerateKeyController implements Initializable {
         Pane pane = FXMLLoader.load(App.class.getResource("button/Asymmetric.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
-
+        pane.setLayoutX(0);
+        pane.setLayoutY(25);
     }
 
     @FXML
@@ -204,7 +207,8 @@ public class GenerateKeyController implements Initializable {
         Pane pane = FXMLLoader.load(App.class.getResource("button/PBE.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
-
+        pane.setLayoutX(0);
+        pane.setLayoutY(25);
     }
 
     @FXML
@@ -213,6 +217,8 @@ public class GenerateKeyController implements Initializable {
         Pane pane = FXMLLoader.load(App.class.getResource("button/Hashing.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
+        pane.setLayoutX(0);
+        pane.setLayoutY(25);
     }
 
     @Override

@@ -45,6 +45,8 @@ public class App extends Application {
         AnchorPane root = fxmlLoader.load();
         Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
         root.getChildren().add(pane);
+        pane.setLayoutX(0);
+        pane.setLayoutY(25);
         root.requestFocus();
         return root;
 
@@ -71,7 +73,7 @@ public class App extends Application {
 
         mainWindow = new Stage();
         // mainWindow.initStyle(StageStyle.UNDECORATED); // an thanh bar
-        scene = new Scene(loadFXML(fxml), 563, 350);
+        scene = new Scene(loadFXML(fxml), 563, 370);
 
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         mainWindow.setX(bounds.getMinX() + bounds.getWidth() / 2 - 570 / 2);
