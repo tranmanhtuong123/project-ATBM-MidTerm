@@ -1,4 +1,4 @@
-package javafxApp.controller.music;
+package javafxApp.controller.button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,7 +9,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -23,9 +22,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import javafxApp.App;
-import javafxApp.controller.MainController;
 
-public class Mp3 implements Initializable {
+public class MusicController implements Initializable {
 
     @FXML
     private Button buttonMain;
@@ -51,15 +49,8 @@ public class Mp3 implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        ////
-        try {
-            Pane newLoadedPane = FXMLLoader.load(App.class.getResource("common/Layout1.fxml"));
-            mainAll.setCenter(newLoadedPane);
-        } catch (Exception e) {
 
-        }
-
-        URL url = App.class.getResource("audio/hackerMusic.mp3");
+        URL url = App.class.getResource("music/Alone.mp3");
         media = new Media(url.toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setOnEndOfMedia(new Runnable() {
@@ -85,17 +76,17 @@ public class Mp3 implements Initializable {
     }
 
     @FXML
-    public void actionMedia(ActionEvent actionEvent) {
+    // public void actionMedia(ActionEvent actionEvent) {
 
-        String s = audioControl.getIconLiteral();
-        if (s.equals("fa-play")) {
-            audioControl.setIconLiteral("fa-pause");
-            mediaPlayer.play();
-        } else if (s.equals("fa-pause")) {
-            audioControl.setIconLiteral("fa-play");
-            mediaPlayer.pause();
-        }
-    }
+    //     String s = audioControl.getIconLiteral();
+    //     if (s.equals("fa-play")) {
+    //         audioControl.setIconLiteral("fa-pause");
+    //         mediaPlayer.play();
+    //     } else if (s.equals("fa-pause")) {
+    //         audioControl.setIconLiteral("fa-play");
+    //         mediaPlayer.pause();
+    //     }
+    // }
 
     public void checkCheckBox(ActionEvent actionEvent) {
         if (checkBoxVolume.isSelected()) {
@@ -105,4 +96,3 @@ public class Mp3 implements Initializable {
         }
     }
 }
-
