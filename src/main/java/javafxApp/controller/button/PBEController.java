@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 
 import encode.Main;
 import encode.common.Warehouse;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

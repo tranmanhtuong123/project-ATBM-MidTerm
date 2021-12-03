@@ -7,7 +7,6 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -75,11 +74,12 @@ public class MusicController implements Initializable {
         mediaPlayer.play();
     }
 
-    public void checkCheckBox(ActionEvent actionEvent) {
+    public void checkCheckBox() {
         if (checkBoxVolume.isSelected()) {
             mediaPlayer.setVolume(0);
         } else {
             mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
         }
     }
+    
 }

@@ -16,6 +16,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+
 /**
  * This class represents a splash screen which is to be shown while the game is
  * loading! one the game has loaded the splash screen will fade out!
@@ -24,8 +25,6 @@ import javafx.util.Duration;
  *
  */
 public class SplashScreen {
-
-	private FadeTransition fadeSplash;
 
 	private Pane splashLayout;
 
@@ -37,9 +36,8 @@ public class SplashScreen {
 	private Image splash_image;
 
 	public SplashScreen(Stage stage, Image splash_Image, InitCompletionHandler showGameMethod) {
-		
+
 		this.splash_image = splash_Image;
-		 
 
 		this.splash = new ImageView(splash_image);
 		this.splashWidth = (int) splash.getImage().getWidth();
@@ -62,7 +60,7 @@ public class SplashScreen {
 			final Task<Void> task = new Task<Void>() {
 				@Override
 				protected Void call() throws InterruptedException {
-				
+
 					return null;
 				}
 			};
