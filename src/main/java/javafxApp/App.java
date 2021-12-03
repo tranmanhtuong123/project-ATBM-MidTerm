@@ -19,30 +19,10 @@ public class App extends Application {
 
     private static Scene scene;
 
-    private Image splash_image = new Image(
-            "https://previews.123rf.com/images/daniilphotos/daniilphotos1905/daniilphotos190500450/122482393-pink-matrix-digital-background-abstract-cyberspace-concept-characters-fall-down-matrix-from-symbols-.jpg",
-            563, 350, false, false);
-
-    // public void start(Stage stage) throws IOException {
-    // scene = new Scene(loadFXML("main.fxml"), 563, 350);
-    // stage.setScene(scene);
-    // stage.show();
-    // }
-
-    @Override
     public void start(Stage stage) throws IOException {
-        new SplashScreen(stage, splash_image, () -> {
-
-            try {
-                scene = new Scene(loadFXML("main.fxml"), 563, 350);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            stage.setScene(scene);
-            stage.show();
-
-        });
-
+        scene = new Scene(loadFXML("main.fxml"), 563, 350);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -65,7 +45,27 @@ public class App extends Application {
         launch();
     }
 
+    // private Image splash_image = new Image(
+    //         "https://previews.123rf.com/images/daniilphotos/daniilphotos1905/daniilphotos190500450/122482393-pink-matrix-digital-background-abstract-cyberspace-concept-characters-fall-down-matrix-from-symbols-.jpg",
+    //         563, 350, false, false);
+
     // private Stage mainWindow;
+
+    // public void start(Stage stage) throws IOException {
+    // new SplashScreen(stage, splash_image, () -> {
+
+    // try {
+    // scene = new Scene(loadFXML("main.fxml"), 563, 350);
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+    // stage.setScene(scene);
+    // stage.show();
+
+    // });
+
+    // }
+
     // private void showGame() throws IOException {
 
     // mainWindow = new Stage();
