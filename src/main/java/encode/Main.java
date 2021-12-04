@@ -65,8 +65,7 @@ public class Main extends Task<String> {
         } else {
             result = KeyStore.createKey(type, keyType, keyContent, destFolder, algorithm);
         }
-
-        // Thread.sleep(500);
+        
         updateProgress(2, 2);
         return result;
     }

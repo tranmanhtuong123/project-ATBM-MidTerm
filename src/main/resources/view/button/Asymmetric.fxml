@@ -10,35 +10,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane fx:id="pane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="563.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.button.AsymmetricController" >
+<Pane fx:id="pane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="563.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.button.AsymmetricController">
    <children>
       <TextField fx:id="keyFileTextField" layoutX="333.0" layoutY="91.0" prefHeight="25.0" prefWidth="140.0" />
-      <Label fx:id="keyFileLabel" layoutX="249.0" layoutY="95.0" text="Key path" />
-      <Label fx:id="inputFileLabel" layoutX="249.0" layoutY="142.0" text="Input File" />
-      <Pane layoutX="14.0" layoutY="20.0" prefHeight="218.0" prefWidth="214.0" style="-fx-border-color: black;">
+      <Label fx:id="keyFileLabel" layoutX="249.0" layoutY="95.0" text="Key path" textFill="#fffefe" />
+      <Label fx:id="inputFileLabel" layoutX="249.0" layoutY="142.0" text="Input File" textFill="WHITE" />
+      <Pane layoutX="14.0" layoutY="20.0" prefHeight="218.0" prefWidth="214.0" style="-fx-border-color: white;">
          <children>
-            <RadioButton fx:id="isEncryptCB" layoutX="13.0" layoutY="7.0" mnemonicParsing="false" text="Encrypt" />
-            <RadioButton fx:id="isDecryptCB" layoutX="13.0" layoutY="39.0" mnemonicParsing="false" text="Decrypt" />
-            <RadioButton fx:id="isFile" layoutX="117.0" layoutY="7.0" mnemonicParsing="false" text="File" />
-            <RadioButton fx:id="isPlainText" layoutX="117.0" layoutY="39.0" mnemonicParsing="false" text="PlainText" />
-            <Label layoutX="7.0" layoutY="76.0" text="Algorithms" />
+            <RadioButton fx:id="isEncryptCB" layoutX="13.0" layoutY="7.0" mnemonicParsing="false" text="Encrypt" textFill="WHITE" />
+            <RadioButton fx:id="isDecryptCB" layoutX="13.0" layoutY="39.0" mnemonicParsing="false" text="Decrypt" textFill="WHITE" />
+            <RadioButton fx:id="isFile" layoutX="117.0" layoutY="7.0" mnemonicParsing="false" text="File" textFill="WHITE" />
+            <RadioButton fx:id="isPlainText" layoutX="117.0" layoutY="39.0" mnemonicParsing="false" text="PlainText" textFill="WHITE" />
+            <Label layoutX="7.0" layoutY="76.0" text="Algorithms" textFill="WHITE" />
             <ComboBox fx:id="algoCombobox" layoutX="88.0" layoutY="72.0" prefHeight="25.0" prefWidth="113.0" />
-            <Label fx:id="keyTypeLabel" layoutX="13.0" layoutY="110.0" text="Key Type" />
+            <Label fx:id="keyTypeLabel" layoutX="13.0" layoutY="110.0" text="Key Type" textFill="WHITE" />
             <ComboBox fx:id="keySizeCombobox" layoutX="88.0" layoutY="106.0" onAction="#keyTypeSelect" prefHeight="25.0" prefWidth="113.0" />
-            <Label layoutX="21.0" layoutY="144.0" text="Mode" />
+            <Label layoutX="21.0" layoutY="144.0" text="Mode" textFill="WHITE" />
             <ComboBox fx:id="modeCombobox" layoutX="88.0" layoutY="140.0" prefHeight="25.0" prefWidth="113.0" />
-            <Label layoutX="15.0" layoutY="176.0" text="Padding" />
+            <Label layoutX="15.0" layoutY="176.0" text="Padding" textFill="WHITE" />
             <ComboBox fx:id="paddingCombobox" layoutX="88.0" layoutY="172.0" prefHeight="25.0" prefWidth="113.0" />
          </children>
       </Pane>
       <TextField fx:id="inputFileTextField" editable="false" layoutX="333.0" layoutY="138.0" prefHeight="25.0" prefWidth="140.0" />
       <Button fx:id="inputFileButton" layoutX="490.0" layoutY="138.0" mnemonicParsing="false" onAction="#openInputFile" prefHeight="25.0" prefWidth="58.0" text="Browse" />
-      <Label fx:id="outputFileLabel" layoutX="249.0" layoutY="192.0" text="Output Folder" />
+      <Label fx:id="outputFileLabel" layoutX="249.0" layoutY="192.0" text="Output Folder" textFill="WHITE" />
       <TextField fx:id="outputTextField" editable="false" layoutX="333.0" layoutY="188.0" prefHeight="25.0" prefWidth="140.0" />
       <Button fx:id="outputFileButton" layoutX="490.0" layoutY="188.0" mnemonicParsing="false" onAction="#openOutputFile" prefHeight="25.0" prefWidth="58.0" text="Browse" />
       <Button fx:id="startButton" layoutX="252.0" layoutY="248.0" mnemonicParsing="false" onAction="#start" text="Start" />
-      <Text layoutX="277.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asymmetric">
+      <Text fill="WHITE" layoutX="277.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asymmetric">
          <font>
             <Font size="24.0" />
          </font>

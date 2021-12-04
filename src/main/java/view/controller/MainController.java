@@ -125,7 +125,7 @@ public class MainController implements Initializable {
     }
 
     public void Exit(ActionEvent event) {
-
+        
 		Platform.exit();
 		System.exit(0);
 	}

@@ -160,7 +160,7 @@ public class PBEController implements Initializable {
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
         pane.setLayoutX(0);
-        pane.setLayoutY(26);
+        pane.setLayoutY(325);
     }
 
     @Override

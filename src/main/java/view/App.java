@@ -26,7 +26,7 @@ public class App extends Application {
 
     private Image splash_image = new Image(
             "https://previews.123rf.com/images/daniilphotos/daniilphotos1905/daniilphotos190500450/122482393-pink-matrix-digital-background-abstract-cyberspace-concept-characters-fall-down-matrix-from-symbols-.jpg",
-            570, 400, false, false);
+            570, 650, false, false);
 
     // public void start(Stage stage) throws IOException {
     // scene = new Scene(loadFXML("main.fxml"), 563, 350);
@@ -47,7 +47,7 @@ public class App extends Application {
         Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
         root.getChildren().add(pane);
         pane.setLayoutX(0);
-        pane.setLayoutY(26);
+        pane.setLayoutY(325);
         root.requestFocus();
         return root;
 
@@ -73,12 +73,12 @@ public class App extends Application {
     private void showGame(String fxml) throws IOException {
 
         mainWindow = new Stage();
-        // mainWindow.initStyle(StageStyle.UNDECORATED);
-        scene = new Scene(loadFXML(fxml), 563, 367);
+        mainWindow.initStyle(StageStyle.UNDECORATED);
+        scene = new Scene(loadFXML(fxml), 563, 605);
 
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         mainWindow.setX(bounds.getMinX() + bounds.getWidth() / 2 - 580 / 2);
-        mainWindow.setY(bounds.getMinY() + bounds.getHeight() / 2 - 400 / 2);
+        mainWindow.setY(bounds.getMinY() + bounds.getHeight() / 2 - 650 / 2);
 
         mainWindow.setScene(scene);
         mainWindow.show();
