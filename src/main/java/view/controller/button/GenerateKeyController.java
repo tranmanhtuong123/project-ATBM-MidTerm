@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import encode.Main;
+import encode.common.Main;
 import encode.common.Warehouse;
 import view.App;
 import javafx.collections.FXCollections;

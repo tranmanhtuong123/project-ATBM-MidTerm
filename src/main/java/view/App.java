@@ -74,7 +74,7 @@ public class App extends Application {
 
         mainWindow = new Stage();
         mainWindow.initStyle(StageStyle.UNDECORATED);
-        scene = new Scene(loadFXML(fxml), 563, 605);
+        scene = new Scene(loadFXML(fxml), 563, 610);
 
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         mainWindow.setX(bounds.getMinX() + bounds.getWidth() / 2 - 580 / 2);

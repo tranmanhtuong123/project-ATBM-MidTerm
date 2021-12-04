@@ -1,4 +1,4 @@
-package encode;
+package encode.common;
 
 import java.security.Security;
 
@@ -7,7 +7,6 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import encode.algorithm.EncodeFile;
 import encode.algorithm.Hashing;
 import encode.algorithm.EncodePlainText;
-import encode.common.KeyStore;
 import javafx.concurrent.Task;
 
 public class Main extends Task<String> {
