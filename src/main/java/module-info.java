@@ -8,16 +8,16 @@ module javafxApp {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome;
 
-	opens javafxApp to javafx.fxml;
+	opens javafx to javafx.fxml;
 
-	exports javafxApp;
+	exports javafx;
 
-	opens javafxApp.controller to javafx.fxml;
+	opens javafx.controller to javafx.fxml;
 
-	exports javafxApp.controller;
+	exports javafx.controller;
 
-	opens javafxApp.controller.button to javafx.fxml;
+	opens javafx.controller.button to javafx.fxml;
 
-	exports javafxApp.controller.button;
+	exports javafx.controller.button;
 
 }

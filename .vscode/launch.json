@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Launch App",
             "request": "launch",
+            "mainClass": "javafxApp/javafx.App",
+            "projectName": "project-ATBM-MidTerm"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
             "mainClass": "javafxApp/javafxApp.App",
             "projectName": "project-ATBM-MidTerm"
         },
