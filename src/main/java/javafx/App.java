@@ -3,7 +3,7 @@ package javafx;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.controller.SplashScreen;
+import javafx.controller.component.SplashScreen;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -76,7 +76,7 @@ public class App extends Application {
         scene = new Scene(loadFXML(fxml), 563, 367);
 
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
-        mainWindow.setX(bounds.getMinX() + bounds.getWidth() / 2 - 570 / 2);
+        mainWindow.setX(bounds.getMinX() + bounds.getWidth() / 2 - 580 / 2);
         mainWindow.setY(bounds.getMinY() + bounds.getHeight() / 2 - 400 / 2);
 
         mainWindow.setScene(scene);

@@ -1,4 +1,4 @@
-package javafx.controller;
+package javafx.controller.component;
 
 import javafx.animation.FadeTransition;
 import javafx.concurrent.Task;
