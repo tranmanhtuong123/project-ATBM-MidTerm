@@ -18,9 +18,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.io.FilenameUtils;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-// import cryptography.CipherUtils;
 import encode.common.KeyStore;
-// import fileIO.IOUtils;
 import encode.common.Warehouse;
 
 public class EncodeFile {

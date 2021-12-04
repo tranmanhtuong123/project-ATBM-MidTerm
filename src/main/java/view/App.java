@@ -62,10 +62,10 @@ public class App extends Application {
 
             try {
                 showGame("main.fxml");
+                
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         });
 
     }
