@@ -26,7 +26,7 @@ public class App extends Application {
 
     private Image splash_image = new Image(
             "https://previews.123rf.com/images/daniilphotos/daniilphotos1905/daniilphotos190500450/122482393-pink-matrix-digital-background-abstract-cyberspace-concept-characters-fall-down-matrix-from-symbols-.jpg",
-            570, 650, false, false);
+            580, 650, false, false);
 
     // public void start(Stage stage) throws IOException {
     // scene = new Scene(loadFXML("main.fxml"), 563, 350);
