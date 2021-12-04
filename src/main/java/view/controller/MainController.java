@@ -59,7 +59,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
-        URL url = App.class.getResource("music/Alone.mp3");
+        URL url = App.class.getResource("music/Con-Mo-Bang-Gia.mp3");
         media = new Media(url.toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setOnEndOfMedia(new Runnable() {

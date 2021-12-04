@@ -39,16 +39,13 @@ public class EncodeFile {
         CipherOutputStream cos = new CipherOutputStream(fos, cipher);
 
         byte[] buffer = new byte[BUFFER_SIZE];
-        int count = 0;
         int n = 0;
-        while (-1 != (n = fis.read(buffer))) {
+        while ((n = fis.read(buffer)) != -1) {
             cos.write(buffer, 0, n);
-            count += n;
         }
         cos.flush();
         cos.close();
         fis.close();
-        System.out.println("encrypt: " + count);
 
     }
 
@@ -70,16 +67,13 @@ public class EncodeFile {
         CipherInputStream cis = new CipherInputStream(fis, cipher);
 
         byte[] buffer = new byte[BUFFER_SIZE];
-        int count = 0;
         int n = 0;
-        while (-1 != (n = cis.read(buffer))) {
+        while ((n = cis.read(buffer)) != -1) {
             fos.write(buffer, 0, n);
-            count += n;
         }
         fos.flush();
         fos.close();
         cis.close();
-        System.out.println("decrypt: " + count);
 
     }
 

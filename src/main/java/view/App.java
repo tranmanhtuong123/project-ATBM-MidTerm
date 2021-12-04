@@ -47,7 +47,7 @@ public class App extends Application {
         Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
         root.getChildren().add(pane);
         pane.setLayoutX(0);
-        pane.setLayoutY(325);
+        pane.setLayoutY(327);
         root.requestFocus();
         return root;
 
@@ -73,7 +73,7 @@ public class App extends Application {
     private void showGame(String fxml) throws IOException {
 
         mainWindow = new Stage();
-        mainWindow.initStyle(StageStyle.UNDECORATED);
+        mainWindow.initStyle(StageStyle.UNDECORATED); // hide "exist" bar
         scene = new Scene(loadFXML(fxml), 563, 610);
 
         final Rectangle2D bounds = Screen.getPrimary().getBounds();

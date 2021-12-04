@@ -170,7 +170,7 @@ public class SymmetricController implements Initializable {
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
         pane.setLayoutX(0);
-        pane.setLayoutY(325);
+        pane.setLayoutY(327);
     }
 
     @Override
