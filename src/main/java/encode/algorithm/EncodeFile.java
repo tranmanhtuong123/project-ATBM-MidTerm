@@ -22,6 +22,11 @@ import encode.common.KeyStore;
 import encode.common.Warehouse;
 
 public class EncodeFile {
+    
+    public EncodeFile() {
+
+    }
+
     private static final int BUFFER_SIZE = 1024 * 4;
 
     public static void encrypt(String fileInputPath, String folderOuputPath, String keyType, String keyContent,
