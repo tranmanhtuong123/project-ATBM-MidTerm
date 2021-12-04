@@ -4,12 +4,13 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="563.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxApp.controller.button.MusicController">
-   <AnchorPane layoutY="307.0" prefHeight="54.0" prefWidth="563.0" style="-fx-background-color: black;">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="563.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxApp.controller.button.MusicController">
+   <AnchorPane layoutY="308.0" prefHeight="54.0" prefWidth="563.0" style="-fx-background-color: black;">
       <children>
             <Text fill="#fffefe" layoutX="49.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Music hacker player" />
             <CheckBox fx:id="checkBoxVolume" layoutX="415.0" layoutY="34.0" mnemonicParsing="false" onAction="#checkCheckBox" prefWidth="100.0" text="Tắt Nhạc" textFill="#fffdfd" />
@@ -35,4 +36,5 @@
        </Menu>
      </menus>
    </MenuBar>
+   <ProgressBar fx:id="songProgressBar" layoutY="361.0" prefHeight="18.0" prefWidth="563.0" progress="0.0" />
 </AnchorPane>
