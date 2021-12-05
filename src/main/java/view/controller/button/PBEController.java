@@ -52,11 +52,11 @@ public class PBEController implements Initializable {
     ProgressBar progressBar;
     @FXML
     Pane pane1;
-    
+
     ToggleGroup toggleGroup1, toggleGroup2;
     int modeOP = 1;
     boolean ifFile = true;
-    String keyType = "PlainText";
+    String keyType = "PasswordHASH";
 
     @FXML
     private void start(ActionEvent event) throws Exception {
@@ -87,26 +87,6 @@ public class PBEController implements Initializable {
         });
         executorService.submit(main);
         startButton.setDisable(false);
-
-    }
-
-    @FXML
-    private void openKeyFile(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        FileChooser.ExtensionFilter extFilter = null;
-        RadioButton modeOPSelected = (RadioButton) toggleGroup1.getSelectedToggle();
-        if (modeOPSelected.getText().equals("Encrypt")) {
-            extFilter = new FileChooser.ExtensionFilter("Public Key (*.public)", "*.public");
-        } else {
-            extFilter = new FileChooser.ExtensionFilter("Private Key (*.private)", "*.private");
-        }
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        File file = fileChooser.showOpenDialog(keyFileTextField.getParent().getScene().getWindow());
-        if (file != null) {
-            keyFileTextField.setText(file.getAbsolutePath());
-        }
 
     }
 
@@ -142,19 +122,15 @@ public class PBEController implements Initializable {
     private void keyTypeSelect(ActionEvent event) {
         try {
             keyType = keySizeCombobox.getValue().toString();
-            if (keyType.equals("File Key")) {
-                keyFileLabel.setText("Key File");
-                keyFileButton.setVisible(true);
-            } else {
-                keyFileLabel.setText(keyType);
-                keyFileButton.setVisible(false);
-            }
+            keyFileLabel.setText(keyType);
+            keyFileButton.setVisible(false);
+
         } catch (Exception e) {
         }
     }
 
     @FXML
-    private void back(ActionEvent event) throws IOException{
+    private void back(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
         Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
         root.getChildren().remove(pane1);

@@ -25,6 +25,10 @@ public class EncodeFile {
 
     private static final int BUFFER_SIZE = 1024 * 4;
 
+    public EncodeFile() {
+
+    }
+
     public static void encrypt(String fileInputPath, String folderOuputPath, String keyType, String keyContent,
             String algo, String mode, String padding) throws Exception {
 
@@ -104,11 +108,7 @@ public class EncodeFile {
                 key = KeyStore.keySYM(keyType, keyContent, algo, modeOP);
             }
         } else if (Warehouse.listPBEAlgo.contains(algo)) {
-            if (keyType.equals("File Key")) {
-                key = KeyStore.keyPBERSA(keyContent, algo, modeOP, Warehouse.iv, fos, fis);
-            } else {
-                key = KeyStore.keyPBE(keyContent, algo);
-            }
+            key = KeyStore.keyPBE(keyContent, algo);
         } else {
             key = KeyStore.keyRSAAES(keyContent, algo, mode, padding, modeOP, Warehouse.iv, fos, fis);
         }

@@ -38,8 +38,8 @@ public class Warehouse {
                         "OAEPWithSHA3-224AndMGF1Padding", "OAEPWithSHA3-256AndMGF1Padding",
                         "OAEPWithSHA3-384AndMGF1Padding");
         // Key typte PBE
-        public static List<String> listKeyTypePlainText = Arrays.asList("PlainText", "Password", "PasswordHASH");
-         // Key typte Symmetric
+        public static List<String> listKeyTypePlainText = Arrays.asList("Password", "PasswordHASH");
+        // Key typte Symmetric
         public static List<String> listKeyTypeFile = Arrays.asList("PlainText", "Password", "PasswordHASH", "File Key");
         // GenerateKey
         public static List<String> listGenerateKey = Arrays.asList("Asymmetric", "Symmetric", "PBE");

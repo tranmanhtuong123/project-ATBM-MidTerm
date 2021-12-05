@@ -32,6 +32,10 @@ public class Main extends Task<String> {
 
     }
 
+    public Main() {
+
+    }
+
     @Override
     protected String call() throws Exception {
         String result = "";
@@ -64,7 +68,7 @@ public class Main extends Task<String> {
         } else {
             result = KeyStore.createKey(type, keyType, keyContent, destFolder, algorithm);
         }
-        
+
         updateProgress(2, 2);
         return result;
     }
