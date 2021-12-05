@@ -7,11 +7,9 @@ import java.util.TimerTask;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import view.App;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -26,6 +24,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import view.App;
 
 public class MainController implements Initializable {
 
@@ -54,7 +53,6 @@ public class MainController implements Initializable {
     private MediaPlayer mediaPlayer;
     private Timer timer;
     private TimerTask task;
-    private boolean running;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -87,7 +85,7 @@ public class MainController implements Initializable {
         mediaPlayer.play();
     }
 
-    public void checkCheckBox(ActionEvent event) {
+    public void checkCheckBox() {
         if (checkBoxVolume.isSelected()) {
             mediaPlayer.setVolume(0);
         } else {
@@ -103,7 +101,6 @@ public class MainController implements Initializable {
 
             public void run() {
 
-                running = true;
                 double current = mediaPlayer.getCurrentTime().toSeconds();
                 double end = media.getDuration().toSeconds();
                 songProgressBar.setProgress(current / end);
@@ -120,14 +117,13 @@ public class MainController implements Initializable {
 
     public void cancelTimer() {
 
-        running = false;
         timer.cancel();
     }
 
-    public void Exit(ActionEvent event) {
-        
-		Platform.exit();
-		System.exit(0);
-	}
+    public void Exit() {
+
+        Platform.exit();
+        System.exit(0);
+    }
 
 }

@@ -28,21 +28,9 @@ public class App extends Application {
             "https://previews.123rf.com/images/daniilphotos/daniilphotos1905/daniilphotos190500450/122482393-pink-matrix-digital-background-abstract-cyberspace-concept-characters-fall-down-matrix-from-symbols-.jpg",
             580, 650, false, false);
 
-    // public void start(Stage stage) throws IOException {
-    // scene = new Scene(loadFXML("main.fxml"), 563, 350);
-    // stage.setScene(scene);
-    // stage.show();
-    // }
-
-    // public static void setRoot(String fxml) throws IOException {
-    // scene.setRoot(loadFXML(fxml));
-    // }
-
     private static Parent loadFXML(String fxml) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml));
-        // return fxmlLoader.load();
-
         AnchorPane root = fxmlLoader.load();
         Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
         root.getChildren().add(pane);
@@ -58,11 +46,12 @@ public class App extends Application {
     }
 
     public void start(Stage stage) throws IOException {
+        
         new SplashScreen(stage, splash_image, () -> {
 
             try {
                 showGame("main.fxml");
-                
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

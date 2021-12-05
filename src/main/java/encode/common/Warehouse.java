@@ -20,7 +20,7 @@ public class Warehouse {
         public static List<String> listASymmetricAlgo = Arrays.asList("RSA");
         // algorithm PBE
         public static List<String> listPBEAlgo = Arrays.asList("PBEWithMD2AndDES", "PBEWithMD5AndDES");
-        // algorithm Hasing
+        // algorithm Hashing
         public static List<String> listHashAlgo = Arrays.asList("Blake2b-160", "Blake2b-256", "Blake2b-384",
                         "Blake2b-512", "Blake2s-128", "Blake2s-160", "Blake2s-224", "Blake2s-256", "DSTU7564-256",
                         "DSTU7564-384", "DSTU7564-512", "GOST3411", "GOST3411-2012-256", "GOST3411-2012-512",

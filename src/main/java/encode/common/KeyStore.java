@@ -27,6 +27,57 @@ public class KeyStore {
     private static final int PBKDF2_ITERATION_COUNT = 300_000;
     private static final int AES_KEY_LENGTH = 256; // in bits
 
+    public static String createKey(String type, String keyType, String keyContent, String output, String algo)
+            throws Exception {
+        Key key = null;
+        String keyPair = output + File.separator + keyContent;
+        
+        if (type.equals("Asymmetric")) {
+
+            KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+            kpg.initialize(2048);
+            KeyPair kp = kpg.generateKeyPair();
+            try (FileOutputStream out = new FileOutputStream(keyPair + ".private")) {
+                out.write(kp.getPrivate().getEncoded());
+            }
+
+            try (FileOutputStream out = new FileOutputStream(keyPair + ".public")) {
+                out.write(kp.getPublic().getEncoded());
+            }
+            return "";
+
+        } else if (type.equals("Symmetric")) {
+
+            if (keyType.equals("PlainText")) {
+                key = keySYM(algo);
+            }
+            if (keyType.equals("PasswordHASH")) {
+                key = keyHashing(keyContent, algo);
+            }
+            if (keyType.equals("File Key")) {
+
+                KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+                kpg.initialize(2048);
+                KeyPair kp = kpg.generateKeyPair();
+                try (FileOutputStream out = new FileOutputStream(keyPair + ".private")) {
+                    out.write(kp.getPrivate().getEncoded());
+                }
+
+                try (FileOutputStream out = new FileOutputStream(keyPair + ".public")) {
+                    out.write(kp.getPublic().getEncoded());
+                }
+                return "";
+            }
+
+        } else {
+            key = keyPBE(keyContent, algo);
+        }
+        String encodedKey = Base64.getEncoder().encodeToString(key.getEncoded());
+
+        return encodedKey;
+    }
+
+    // PlainText
     public static Key keySYM(String algo) throws Exception {
         SecretKey secretKey = KeyGenerator.getInstance(algo).generateKey();
         return secretKey;
@@ -56,7 +107,8 @@ public class KeyStore {
 
     }
 
-    public static Key keyHasing(String password, String algo) throws Exception {
+    // Hashing
+    public static Key keyHashing(String password, String algo) throws Exception {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         digest.update(password.getBytes("UTF-8"));
         byte[] keyBytes = new byte[16];
@@ -65,48 +117,7 @@ public class KeyStore {
         return secretKeySpec;
     }
 
-    public static void keyPair(String fileBase) throws Exception {
-
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
-        kpg.initialize(2048);
-        KeyPair kp = kpg.generateKeyPair();
-        try (FileOutputStream out = new FileOutputStream(fileBase + ".private")) {
-            out.write(kp.getPrivate().getEncoded());
-        }
-
-        try (FileOutputStream out = new FileOutputStream(fileBase + ".public")) {
-            out.write(kp.getPublic().getEncoded());
-        }
-    }
-
-    public static String createKey(String type, String keyType, String keyContent, String output, String algo)
-            throws Exception {
-        Key key = null;
-        if (type.equals("Asymmetric")) {
-            keyPair(output + File.separator + keyContent);
-            return "";
-
-        } else if (type.equals("Symmetric")) {
-
-            if (keyType.equals("PlainText")) {
-                key = keySYM(algo);
-            }
-            if (keyType.equals("PasswordHASH")) {
-                key = keyHasing(keyContent, algo);
-            }
-            if (keyType.equals("File Key")) {
-                keyPair(output + File.separator + keyContent);
-                return "";
-            }
-
-        } else {
-            key = keyPBE(keyContent, algo);
-        }
-        String encodedKey = Base64.getEncoder().encodeToString(key.getEncoded());
-
-        return encodedKey;
-    }
-
+    // File
     public static Key keySYM(String keyType, String keyContent, String algo, int modeOP) throws Exception {
         Key secretKey = null;
 
@@ -119,7 +130,7 @@ public class KeyStore {
                 secretKey = keySYMPBE(keyContent, algo, Warehouse.iv);
                 break;
             case "PasswordHASH":
-                secretKey = keyHasing(keyContent, algo);
+                secretKey = keyHashing(keyContent, algo);
                 break;
             default:
                 break;
