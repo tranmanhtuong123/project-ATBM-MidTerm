@@ -51,6 +51,7 @@ public class App extends Application {
 
             try {
                 showGame("main.fxml");
+                stage.setResizable(false);
 
             } catch (IOException e) {
                 e.printStackTrace();

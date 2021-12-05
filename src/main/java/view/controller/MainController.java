@@ -17,6 +17,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -126,4 +127,10 @@ public class MainController implements Initializable {
         System.exit(0);
     }
 
+    
+    @FXML
+    void buttonExit(MouseEvent event) {
+        Platform.exit();
+        System.exit(0);
+    }
 }
