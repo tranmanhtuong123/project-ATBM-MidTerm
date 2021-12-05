@@ -5,7 +5,7 @@ import java.security.*;
 
 public class GenerateDigitalSignature {
 	public static void main(String args[]) {
-		String digital = "C:\\Users\\Admin\\Desktop\\test\\ATBM\\4phongsau.rar";
+		String digital = "C:\\Users\\Admin\\Desktop\\test\\ATBM\\dig.txt";
 		String signature = "C:\\Users\\Admin\\Desktop\\test\\ATBM\\signature.private";// privateKey
 		String publickey = "C:\\Users\\Admin\\Desktop\\test\\ATBM\\publickey.public"; // publicKey
 
