@@ -1,68 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.CheckMenuItem?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="563.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainController">
    <ProgressBar fx:id="songProgressBar" layoutY="310.0" prefHeight="18.0" prefWidth="563.0" progress="0.0" />
-   <MenuBar prefHeight="25.0" prefWidth="533.0">
-      <menus>
-         <Menu mnemonicParsing="false" text="File">
-            <items>
-               <Menu mnemonicParsing="false" text="Import">
-                  <items>
-                     <MenuItem mnemonicParsing="false" text="FXML" />
-                     <MenuItem mnemonicParsing="false" text="Media......" />
-                  </items>
-               </Menu>
-               <MenuItem mnemonicParsing="false" onAction="#Exit" text="Close">
-                  <accelerator>
-                     <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                  </accelerator>
-               </MenuItem>
-            </items>
-         </Menu>
-         <Menu mnemonicParsing="false" text="Edit">
-            <items>
-               <RadioMenuItem mnemonicParsing="false" selected="true" text="Male">
-                  <toggleGroup>
-                     <ToggleGroup fx:id="Gender" />
-                  </toggleGroup>
-               </RadioMenuItem>
-               <RadioMenuItem mnemonicParsing="false" text="Female" toggleGroup="$Gender" />
-               <RadioMenuItem mnemonicParsing="false" text="Other" toggleGroup="$Gender" />
-               <CheckMenuItem mnemonicParsing="false" text="Check" />
-               <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-         </Menu>
-         <Menu mnemonicParsing="false" text="Help">
-            <items>
-               <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-         </Menu>
-      </menus>
-   </MenuBar>
-   <ImageView fitHeight="280.0" fitWidth="563.0" layoutX="1.0" layoutY="28.0">
+   <ImageView fitHeight="309.0" fitWidth="563.0" layoutX="1.0" layoutY="-1.0">
       <image>
          <Image url="@button/img/2.jpg" />
       </image>
    </ImageView>
       <Slider fx:id="volumeSlider" layoutX="407.0" layoutY="226.0" max="100.0" prefHeight="20.0" prefWidth="90.0" value="50.0" />
       <CheckBox fx:id="checkBoxVolume" layoutX="407.0" layoutY="264.0" mnemonicParsing="false" onAction="#checkCheckBox" prefWidth="100.0" text="Turn off" textFill="#fffdfd" />
-   <ImageView fx:id="buttonExit" fitHeight="25.0" fitWidth="31.0" layoutX="533.0" onMouseClicked="#buttonExit">
-      <image>
-         <Image url="@button/img/3.png" />
-      </image>
-   </ImageView>
+   <Text fill="#5285c3" layoutX="1.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We do not forget, we do not forgive, expect us" wrappingWidth="371.13671875">
+      <font>
+         <Font name="System Bold Italic" size="17.0" />
+      </font>
+   </Text>
 </AnchorPane>
