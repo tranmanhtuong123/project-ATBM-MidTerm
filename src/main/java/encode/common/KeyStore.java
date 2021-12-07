@@ -106,7 +106,7 @@ public class KeyStore {
         byte[] bytes = Files.readAllBytes(Paths.get(keyFile));
         KeyGenerator kgen = KeyGenerator.getInstance(algo, "BC");
         kgen.init(128);
-        SecretKey skey = kgen.generateKey();
+        SecretKey secretKey = kgen.generateKey();
         Key key = null;
         if (modeOP == 1) {
             X509EncodedKeySpec ks = new X509EncodedKeySpec(bytes);
@@ -114,7 +114,7 @@ public class KeyStore {
             key = kf.generatePublic(ks);
             Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding", "BC");
             cipher.init(modeOP, key);
-            byte[] b = cipher.doFinal(skey.getEncoded());
+            byte[] b = cipher.doFinal(secretKey.getEncoded());
             out.write(b);
             out.write(iv);
         } else {
@@ -126,11 +126,11 @@ public class KeyStore {
             byte[] b = new byte[256];
             in.read(b);
             byte[] keyb = cipher.doFinal(b);
-            skey = new SecretKeySpec(keyb, algo);
+            secretKey = new SecretKeySpec(keyb, algo);
             in.read(iv);
             Warehouse.iv = iv;
         }
-        return skey;
+        return secretKey;
     }
 
     public static Key keySYMPBE(String password, String algo, byte[] salt) throws Exception {
@@ -172,7 +172,7 @@ public class KeyStore {
         byte[] bytes = Files.readAllBytes(Paths.get(keyFile));
         KeyGenerator kgen = KeyGenerator.getInstance("AES", "BC");
         kgen.init(128);
-        SecretKey skey = kgen.generateKey();
+        SecretKey secretKey = kgen.generateKey();
         Key key = null;
         String cipherInstance = algo + "/" + mode + "/" + padding;
         if (modeOP == 1) {
@@ -181,7 +181,7 @@ public class KeyStore {
             key = kf.generatePublic(ks);
             Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
             cipher.init(modeOP, key);
-            byte[] b = cipher.doFinal(skey.getEncoded());
+            byte[] b = cipher.doFinal(secretKey.getEncoded());
             out.write(b);
             out.write(iv);
         } else {
@@ -193,11 +193,11 @@ public class KeyStore {
             byte[] b = new byte[256];
             in.read(b);
             byte[] keyb = cipher.doFinal(b);
-            skey = new SecretKeySpec(keyb, algo);
+            secretKey = new SecretKeySpec(keyb, algo);
             in.read(iv);
             Warehouse.iv = iv;
         }
-        return skey;
+        return secretKey;
     }
 
     // PBE

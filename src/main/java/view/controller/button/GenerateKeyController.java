@@ -149,7 +149,7 @@ public class GenerateKeyController implements Initializable {
                     inputFileTextField.setVisible(true);
                 }
 
-                inputFileLabel.setText("Key Content");
+                inputFileLabel.setText("PlainText");
                 outputFileLabel.setText("Result");
                 outputFileButton.setText("Coppy");
             }

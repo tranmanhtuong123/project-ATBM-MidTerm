@@ -23,8 +23,6 @@ import encode.common.Warehouse;
 
 public class EncodeFile {
 
-    private static final int BUFFER_SIZE = 1024 * 4;
-
     public EncodeFile() {
 
     }
@@ -43,7 +41,7 @@ public class EncodeFile {
                 padding);
         CipherOutputStream cos = new CipherOutputStream(fos, cipher);
 
-        byte[] buffer = new byte[BUFFER_SIZE];
+        byte[] buffer = new byte[1024 * 4];
         int n = 0;
         while ((n = fis.read(buffer)) != -1) {
             cos.write(buffer, 0, n);
@@ -71,7 +69,7 @@ public class EncodeFile {
                 padding);
         CipherInputStream cis = new CipherInputStream(fis, cipher);
 
-        byte[] buffer = new byte[BUFFER_SIZE];
+        byte[] buffer = new byte[1024 * 4];
         int n = 0;
         while ((n = cis.read(buffer)) != -1) {
             fos.write(buffer, 0, n);
