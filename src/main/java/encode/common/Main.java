@@ -10,23 +10,23 @@ import encode.algorithm.EncodePlainText;
 import javafx.concurrent.Task;
 
 public class Main extends Task<String> {
-    String srcFile, plainText, destFolder, keyType, keyContent, algorithm, mode, padding, type, tab;
+    String source, plainText, dest, keyType, keyContent, algorithm, mode, padding, type, button;
     int modeOP;
     boolean ifFile;
 
-    public Main(String srcFile, String plainText, String destFolder, String keyType, String keyContent,
-            String algorithm, String mode, String padding, String type, String tab, int modeOP, boolean ifFile) {
+    public Main(String source, String plainText, String dest, String keyType, String keyContent,
+            String algorithm, String mode, String padding, String type, String button, int modeOP, boolean ifFile) {
         Security.addProvider(new BouncyCastleProvider());
-        this.srcFile = srcFile;
+        this.source = source;
         this.plainText = plainText;
-        this.destFolder = destFolder;
+        this.dest = dest;
         this.keyType = keyType;
         this.keyContent = keyContent;
         this.algorithm = algorithm;
         this.mode = mode;
         this.padding = padding;
         this.type = type;
-        this.tab = tab;
+        this.button = button;
         this.modeOP = modeOP;
         this.ifFile = ifFile;
 
@@ -41,13 +41,13 @@ public class Main extends Task<String> {
         String result = "";
         updateProgress(1, 2);
 
-        if (tab.equals("cryptography")) {
+        if (button.equals("cryptography")) {
             if (ifFile) {
                 // modeOP ==1 => Encypt
                 if (modeOP == 1) {
-                    EncodeFile.encrypt(srcFile, destFolder, keyType, keyContent, algorithm, mode, padding);
+                    EncodeFile.encrypt(source, dest, keyType, keyContent, algorithm, mode, padding);
                 } else {
-                    EncodeFile.decrypt(srcFile, destFolder, keyType, keyContent, algorithm, mode, padding);
+                    EncodeFile.decrypt(source, dest, keyType, keyContent, algorithm, mode, padding);
                 }
             } else {
                 if (modeOP == 1) {
@@ -58,15 +58,15 @@ public class Main extends Task<String> {
                 }
             }
 
-        } else if (tab.equals("hash")) {
+        } else if (button.equals("hash")) {
             Hashing hashing = new Hashing();
             if (ifFile) {
-                result = (hashing.hashFile(srcFile, algorithm));
+                result = (hashing.hashFile(source, algorithm));
             } else {
                 result = (hashing.hashPlainText(plainText, algorithm));
             }
         } else {
-            result = KeyStore.createKey(type, keyType, keyContent, destFolder, algorithm);
+            result = KeyStore.createKey(type, keyType, keyContent, dest, algorithm);
         }
 
         updateProgress(2, 2);

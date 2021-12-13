@@ -13,7 +13,7 @@
 <Pane fx:id="pane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="563.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.button.PBEController">
    <children>
       <TextField fx:id="keyFileTextField" layoutX="333.0" layoutY="91.0" prefHeight="25.0" prefWidth="140.0" />
-      <Label fx:id="keyFileLabel" layoutX="249.0" layoutY="95.0" prefHeight="17.0" prefWidth="58.0" text="Password" textFill="WHITE" />
+      <Label fx:id="keyFileLabel" layoutX="249.0" layoutY="95.0" prefHeight="17.0" prefWidth="58.0" text="PasswordHASH" textFill="WHITE" />
       <Label fx:id="inputFileLabel" layoutX="249.0" layoutY="142.0" text="Input File" textFill="WHITE" />
       <Pane layoutX="14.0" layoutY="20.0" prefHeight="218.0" prefWidth="214.0" style="-fx-border-color: white;">
          <children>
