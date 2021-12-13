@@ -108,7 +108,7 @@ public class EncodeFile {
         } else if (Warehouse.listPBEAlgo.contains(algo)) {
             key = KeyStore.keyPBE(keyContent, algo);
         } else {
-            key = KeyStore.keyRSAAES(keyContent, algo, mode, padding, modeOP, Warehouse.iv, fos, fis);
+            key = KeyStore.keyASYMRSA(keyContent, algo, mode, padding, modeOP, Warehouse.iv, fos, fis);
         }
 
         String cipherInstance = algo + "/" + mode + "/" + padding;

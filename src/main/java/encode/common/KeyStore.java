@@ -167,7 +167,7 @@ public class KeyStore {
         return key;
     }
 
-    public static Key keyRSAAES(String keyFile, String algo, String mode, String padding, int modeOP, byte[] iv,
+    public static Key keyASYMRSA(String keyFile, String algo, String mode, String padding, int modeOP, byte[] iv,
             OutputStream out, InputStream in) throws Exception {
         byte[] bytes = Files.readAllBytes(Paths.get(keyFile));
         KeyGenerator kgen = KeyGenerator.getInstance("AES", "BC");
