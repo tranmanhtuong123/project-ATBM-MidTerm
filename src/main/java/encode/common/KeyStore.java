@@ -47,10 +47,18 @@ public class KeyStore {
         } else if (type.equals("Symmetric")) {
 
             if (keyType.equals("PlainText")) {
-                key = keySYM(algo);
+                // key = keySYM(algo);
+                key = KeyGenerator.getInstance(algo).generateKey();
+
             }
             if (keyType.equals("PasswordHASH")) {
-                key = keySYMHashing(keyContent, algo);
+                // key = keySYMHashing(keyContent, algo);
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                digest.update(keyContent.getBytes("UTF-8"));
+                byte[] keyBytes = new byte[16];
+                System.arraycopy(digest.digest(), 0, keyBytes, 0, keyBytes.length);
+                key = new SecretKeySpec(keyBytes, algo);
+
             }
             if (keyType.equals("File Key")) {
 
@@ -76,10 +84,6 @@ public class KeyStore {
     }
 
     // Symmetric
-    public static Key keySYM(String algo) throws Exception {
-        SecretKey secretKey = KeyGenerator.getInstance(algo).generateKey();
-        return secretKey;
-    }
 
     public static Key keySYM(String keyType, String keyContent, String algo, int modeOP) throws Exception {
         Key secretKey = null;
@@ -90,10 +94,21 @@ public class KeyStore {
                 secretKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, algo);
                 break;
             case "Password":
-                secretKey = keySYMPBE(keyContent, algo, Warehouse.iv);
+                // secretKey = keySYMPBE(keyContent, algo, Warehouse.iv);
+                SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
+                KeySpec keySpec = new PBEKeySpec(keyContent.toCharArray(), Warehouse.iv, 300_000, 256);
+                byte[] secret = factory.generateSecret(keySpec).getEncoded();
+                secretKey = new SecretKeySpec(secret, algo);
+
                 break;
             case "PasswordHASH":
-                secretKey = keySYMHashing(keyContent, algo);
+                // secretKey = keySYMHashing(keyContent, algo);
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                digest.update(keyContent.getBytes("UTF-8"));
+                byte[] keyBytes = new byte[16];
+                System.arraycopy(digest.digest(), 0, keyBytes, 0, keyBytes.length);
+                secretKey = new SecretKeySpec(keyBytes, algo);
+
                 break;
             default:
                 break;
@@ -131,23 +146,6 @@ public class KeyStore {
             Warehouse.iv = iv;
         }
         return secretKey;
-    }
-
-    public static Key keySYMPBE(String password, String algo, byte[] salt) throws Exception {
-        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
-        KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, 300_000, 256);
-        byte[] secret = factory.generateSecret(keySpec).getEncoded();
-        SecretKey key = new SecretKeySpec(secret, algo);
-        return key;
-    }
-
-    public static Key keySYMHashing(String password, String algo) throws Exception {
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        digest.update(password.getBytes("UTF-8"));
-        byte[] keyBytes = new byte[16];
-        System.arraycopy(digest.digest(), 0, keyBytes, 0, keyBytes.length);
-        SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, algo);
-        return secretKeySpec;
     }
 
     // Asymmetric
