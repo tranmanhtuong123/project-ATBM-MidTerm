@@ -25,6 +25,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class KeyStore {
 
+    static int keyLength = 256;
+
     public static String createKey(String type, String keyType, String keyContent, String output, String algo)
             throws Exception {
         Key key = null;
@@ -47,12 +49,10 @@ public class KeyStore {
         } else if (type.equals("Symmetric")) {
 
             if (keyType.equals("PlainText")) {
-                // key = keySYM(algo);
                 key = KeyGenerator.getInstance(algo).generateKey();
 
             }
             if (keyType.equals("PasswordHASH")) {
-                // key = keySYMHashing(keyContent, algo);
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
                 digest.update(keyContent.getBytes("UTF-8"));
                 byte[] keyBytes = new byte[16];
@@ -84,7 +84,6 @@ public class KeyStore {
     }
 
     // Symmetric
-
     public static Key keySYM(String keyType, String keyContent, String algo, int modeOP) throws Exception {
         Key secretKey = null;
 
@@ -93,23 +92,22 @@ public class KeyStore {
                 byte[] decodedKey = Base64.getDecoder().decode(keyContent);
                 secretKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, algo);
                 break;
+
             case "Password":
-                // secretKey = keySYMPBE(keyContent, algo, Warehouse.iv);
                 SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
-                KeySpec keySpec = new PBEKeySpec(keyContent.toCharArray(), Warehouse.iv, 300_000, 256);
+                KeySpec keySpec = new PBEKeySpec(keyContent.toCharArray(), Warehouse.iv, 10000, keyLength);
                 byte[] secret = factory.generateSecret(keySpec).getEncoded();
                 secretKey = new SecretKeySpec(secret, algo);
-
                 break;
+
             case "PasswordHASH":
-                // secretKey = keySYMHashing(keyContent, algo);
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
                 digest.update(keyContent.getBytes("UTF-8"));
                 byte[] keyBytes = new byte[16];
                 System.arraycopy(digest.digest(), 0, keyBytes, 0, keyBytes.length);
                 secretKey = new SecretKeySpec(keyBytes, algo);
-
                 break;
+
             default:
                 break;
         }
@@ -138,7 +136,7 @@ public class KeyStore {
             key = kf.generatePrivate(ks);
             Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding", "BC");
             cipher.init(modeOP, key);
-            byte[] b = new byte[256];
+            byte[] b = new byte[keyLength];
             in.read(b);
             byte[] keyb = cipher.doFinal(b);
             secretKey = new SecretKeySpec(keyb, algo);
@@ -188,7 +186,7 @@ public class KeyStore {
             key = kf.generatePrivate(ks);
             Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
             cipher.init(modeOP, key);
-            byte[] b = new byte[256];
+            byte[] b = new byte[keyLength];
             in.read(b);
             byte[] keyb = cipher.doFinal(b);
             secretKey = new SecretKeySpec(keyb, algo);
