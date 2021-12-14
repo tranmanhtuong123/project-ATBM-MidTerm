@@ -52,11 +52,56 @@ public class PBEController implements Initializable {
     ProgressBar progressBar;
     @FXML
     Pane pane1;
-
     ToggleGroup toggleGroup1, toggleGroup2;
     int modeOP = 1;
     boolean ifFile = true;
     String keyType = "PasswordHASH";
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        toggleGroup1 = new ToggleGroup();
+        isEncryptCB.setToggleGroup(toggleGroup1);
+        isDecryptCB.setToggleGroup(toggleGroup1);
+        isEncryptCB.setSelected(true);
+        toggleGroup1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+                RadioButton radioButton = (RadioButton) toggleGroup1.getSelectedToggle();
+                modeOP = (radioButton.getText().equals("Encrypt") ? 1 : 2);
+            }
+        });
+
+        toggleGroup2 = new ToggleGroup();
+        isPlainText.setToggleGroup(toggleGroup2);
+        isFile.setToggleGroup(toggleGroup2);
+        isFile.setSelected(true);
+        toggleGroup2.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+                RadioButton radioButton = (RadioButton) toggleGroup2.getSelectedToggle();
+                ifFile = (radioButton.getText().equals("File") ? true : false);
+
+                if (ifFile) {
+                    inputFileButton.setVisible(true);
+                    outputFileButton.setText("Browse");
+                    inputFileLabel.setText("Input File");
+                    outputFileLabel.setText("Output Folder");
+                    inputFileTextField.setEditable(false);
+                } else {
+                    inputFileButton.setVisible(false);
+                    outputFileButton.setText("Coppy");
+                    inputFileLabel.setText("Input Text");
+                    outputFileLabel.setText("Output Text");
+                    inputFileTextField.setEditable(true);
+                }
+                keySizeCombobox.getSelectionModel().selectFirst();
+
+            }
+        });
+        keySizeCombobox.getItems().addAll(Warehouse.listKeyTypePlainText);
+        keySizeCombobox.getSelectionModel().selectFirst();
+        algoCombobox.getItems().addAll(Warehouse.listPBEAlgo);
+        algoCombobox.getSelectionModel().selectFirst();
+
+    }
 
     @FXML
     private void start(ActionEvent event) throws Exception {
@@ -139,49 +184,4 @@ public class PBEController implements Initializable {
         pane.setLayoutY(327);
     }
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        toggleGroup1 = new ToggleGroup();
-        isEncryptCB.setToggleGroup(toggleGroup1);
-        isDecryptCB.setToggleGroup(toggleGroup1);
-        isEncryptCB.setSelected(true);
-        toggleGroup1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-                RadioButton radioButton = (RadioButton) toggleGroup1.getSelectedToggle();
-                modeOP = (radioButton.getText().equals("Encrypt") ? 1 : 2);
-            }
-        });
-
-        toggleGroup2 = new ToggleGroup();
-        isPlainText.setToggleGroup(toggleGroup2);
-        isFile.setToggleGroup(toggleGroup2);
-        isFile.setSelected(true);
-        toggleGroup2.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-                RadioButton radioButton = (RadioButton) toggleGroup2.getSelectedToggle();
-                ifFile = (radioButton.getText().equals("File") ? true : false);
-
-                if (ifFile) {
-                    inputFileButton.setVisible(true);
-                    outputFileButton.setText("Browse");
-                    inputFileLabel.setText("Input File");
-                    outputFileLabel.setText("Output Folder");
-                    inputFileTextField.setEditable(false);
-                } else {
-                    inputFileButton.setVisible(false);
-                    outputFileButton.setText("Coppy");
-                    inputFileLabel.setText("Input Text");
-                    outputFileLabel.setText("Output Text");
-                    inputFileTextField.setEditable(true);
-                }
-                keySizeCombobox.getSelectionModel().selectFirst();
-
-            }
-        });
-        keySizeCombobox.getItems().addAll(Warehouse.listKeyTypePlainText);
-        keySizeCombobox.getSelectionModel().selectFirst();
-        algoCombobox.getItems().addAll(Warehouse.listPBEAlgo);
-        algoCombobox.getSelectionModel().selectFirst();
-
-    }
 }

@@ -53,11 +53,39 @@ public class HashingController implements Initializable {
     ProgressBar progressBar;
     @FXML
     Pane pane1;
-
     ToggleGroup toggleGroup1, toggleGroup2;
     int modeOP = 1;
     boolean ifFile = true;
     String keyType = "PlainText";
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        toggleGroup2 = new ToggleGroup();
+        isPlainText.setToggleGroup(toggleGroup2);
+        isFile.setToggleGroup(toggleGroup2);
+        isFile.setSelected(true);
+        toggleGroup2.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+                RadioButton radioButton = (RadioButton) toggleGroup2.getSelectedToggle();
+                ifFile = (radioButton.getText().equals("File") ? true : false);
+
+                if (ifFile) {
+                    inputFileButton.setVisible(true);
+                    inputFileLabel.setText("Input File");
+                    inputFileTextField.setEditable(false);
+                } else {
+                    inputFileButton.setVisible(false);
+                    inputFileLabel.setText("Input Text");
+                    inputFileTextField.setEditable(true);
+                }
+
+            }
+        });
+
+        algoCombobox.getItems().addAll(Warehouse.listHashAlgo);
+        algoCombobox.getSelectionModel().selectFirst();
+
+    }
 
     @FXML
     private void start(ActionEvent event) throws Exception {
@@ -71,7 +99,8 @@ public class HashingController implements Initializable {
         } else {
             outputTextField.setText(hashing.hashPlainText(plainText, algorithm));
         }
-        Main main = new Main(fileInputPath, plainText, "", keyType, "", algorithm, "", "", "", "hashing", modeOP, ifFile);
+        Main main = new Main(fileInputPath, plainText, "", keyType, "", algorithm, "", "", "", "hashing", modeOP,
+                ifFile);
 
         startButton.setDisable(true);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -128,32 +157,4 @@ public class HashingController implements Initializable {
         pane.setLayoutY(327);
     }
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        toggleGroup2 = new ToggleGroup();
-        isPlainText.setToggleGroup(toggleGroup2);
-        isFile.setToggleGroup(toggleGroup2);
-        isFile.setSelected(true);
-        toggleGroup2.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-                RadioButton radioButton = (RadioButton) toggleGroup2.getSelectedToggle();
-                ifFile = (radioButton.getText().equals("File") ? true : false);
-
-                if (ifFile) {
-                    inputFileButton.setVisible(true);
-                    inputFileLabel.setText("Input File");
-                    inputFileTextField.setEditable(false);
-                } else {
-                    inputFileButton.setVisible(false);
-                    inputFileLabel.setText("Input Text");
-                    inputFileTextField.setEditable(true);
-                }
-
-            }
-        });
-
-        algoCombobox.getItems().addAll(Warehouse.listHashAlgo);
-        algoCombobox.getSelectionModel().selectFirst();
-
-    }
 }

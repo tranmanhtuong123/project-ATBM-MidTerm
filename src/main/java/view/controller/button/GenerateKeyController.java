@@ -51,6 +51,17 @@ public class GenerateKeyController implements Initializable {
     int modeOP = 1;
     String keyType = "File Key";
 
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        typeCombobox.getItems().addAll(Warehouse.listGenerateKey);
+        typeCombobox.getSelectionModel().selectFirst();
+        keySizeCombobox.getItems().addAll(Warehouse.listKeyTypeRSA);
+        keySizeCombobox.getSelectionModel().selectFirst();
+        algoCombobox.getItems().addAll(Warehouse.listASymmetricAlgo);
+        algoCombobox.getSelectionModel().selectFirst();
+
+    }
+
     @FXML
     private void start(ActionEvent event) throws Exception {
 
@@ -220,14 +231,4 @@ public class GenerateKeyController implements Initializable {
         pane.setLayoutY(327);
     }
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        typeCombobox.getItems().addAll(Warehouse.listGenerateKey);
-        typeCombobox.getSelectionModel().selectFirst();
-        keySizeCombobox.getItems().addAll(Warehouse.listKeyTypeRSA);
-        keySizeCombobox.getSelectionModel().selectFirst();
-        algoCombobox.getItems().addAll(Warehouse.listASymmetricAlgo);
-        algoCombobox.getSelectionModel().selectFirst();
-
-    }
 }
