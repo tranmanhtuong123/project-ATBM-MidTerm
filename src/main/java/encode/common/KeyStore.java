@@ -27,7 +27,7 @@ public class KeyStore {
 
     static int keyLength = 256;
 
-    public static String createKey(String type, String keyType, String keyContent, String output, String algo)
+    public static String generatingKey(String type, String keyType, String keyContent, String output, String algo)
             throws Exception {
         Key key = null;
         String keyPair = output + File.separator + keyContent;

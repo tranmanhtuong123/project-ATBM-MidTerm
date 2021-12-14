@@ -71,7 +71,7 @@ public class HashingController implements Initializable {
         } else {
             outputTextField.setText(hashing.hashPlainText(plainText, algorithm));
         }
-        Main main = new Main(fileInputPath, plainText, "", keyType, "", algorithm, "", "", "", "hash", modeOP, ifFile);
+        Main main = new Main(fileInputPath, plainText, "", keyType, "", algorithm, "", "", "", "hashing", modeOP, ifFile);
 
         startButton.setDisable(true);
         ExecutorService executorService = Executors.newSingleThreadExecutor();

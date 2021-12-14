@@ -58,7 +58,7 @@ public class Main extends Task<String> {
                 }
             }
 
-        } else if (button.equals("hash")) {
+        } else if (button.equals("hashing")) {
             Hashing hashing = new Hashing();
             if (ifFile) {
                 result = (hashing.hashFile(source, algorithm));
@@ -66,7 +66,7 @@ public class Main extends Task<String> {
                 result = (hashing.hashPlainText(plainText, algorithm));
             }
         } else {
-            result = KeyStore.createKey(type, keyType, keyContent, dest, algorithm);
+            result = KeyStore.generatingKey(type, keyType, keyContent, dest, algorithm);
         }
 
         updateProgress(2, 2);

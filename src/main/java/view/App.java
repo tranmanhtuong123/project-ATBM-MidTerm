@@ -48,7 +48,7 @@ public class App extends Application {
 
         new SplashScreen(stage, splash_image, () -> {
             try {
-                showGame("main.fxml");
+                showGame("Main.fxml");
                 
             } catch (IOException e) {
                 e.printStackTrace();
