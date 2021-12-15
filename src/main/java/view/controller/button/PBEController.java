@@ -107,13 +107,13 @@ public class PBEController implements Initializable {
     private void start(ActionEvent event) throws Exception {
         String fileInputPath = inputFileTextField.getText();
         String plainText = inputFileTextField.getText();
-        String folderOuputPath = outputTextField.getText();
+        String folderOutputPath = outputTextField.getText();
         String algorithm = (String) algoCombobox.getValue();
         String mode = "";
         String padding = "";
         String keyContent = keyFileTextField.getText();
 
-        Main main = new Main(fileInputPath, plainText, folderOuputPath, keyType, keyContent, algorithm, mode, padding,
+        Main main = new Main(fileInputPath, plainText, folderOutputPath, keyType, keyContent, algorithm, mode, padding,
                 "", "cryptography", modeOP, ifFile);
 
         startButton.setDisable(true);

@@ -27,12 +27,12 @@ public class EncodeFile {
 
     }
 
-    public static void encrypt(String fileInputPath, String folderOuputPath, String keyType, String keyContent,
+    public static void encrypt(String fileInputPath, String folderOutputPath, String keyType, String keyContent,
             String algo, String mode, String padding) throws Exception {
 
         Security.addProvider(new BouncyCastleProvider());
         String fileInputName = new File(fileInputPath).getName();
-        String fileOutputPath = folderOuputPath + File.separator + fileInputName + ".en";
+        String fileOutputPath = folderOutputPath + File.separator + fileInputName + ".en";
 
         FileInputStream fis = new FileInputStream(fileInputPath);
         FileOutputStream fos = new FileOutputStream(fileOutputPath);
@@ -52,7 +52,7 @@ public class EncodeFile {
 
     }
 
-    public static void decrypt(String fileInputPath, String folderOuputPath, String keyType, String keyContent,
+    public static void decrypt(String fileInputPath, String folderOutputPath, String keyType, String keyContent,
             String algo, String mode, String padding) throws Exception {
 
         Security.addProvider(new BouncyCastleProvider());
@@ -60,7 +60,7 @@ public class EncodeFile {
         String fileNameNoExt = FilenameUtils.removeExtension(fileInputName);
         String fileNameExt = FilenameUtils.getExtension(fileInputName);
         String fileOutputName = fileNameNoExt + "-de." + fileNameExt;
-        String fileOutputPath = folderOuputPath + File.separator + fileOutputName;
+        String fileOutputPath = folderOutputPath + File.separator + fileOutputName;
 
         FileInputStream fis = new FileInputStream(fileInputPath);
         FileOutputStream fos = new FileOutputStream(fileOutputPath);

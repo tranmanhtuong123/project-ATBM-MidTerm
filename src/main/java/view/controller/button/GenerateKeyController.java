@@ -66,11 +66,11 @@ public class GenerateKeyController implements Initializable {
     private void start(ActionEvent event) throws Exception {
 
         String keyContent = inputFileTextField.getText();
-        String folderOuputPath = outputTextField.getText();
+        String folderOutputPath = outputTextField.getText();
         String algorithm = (String) algoCombobox.getValue();
         String type = (String) typeCombobox.getValue();
 
-        Main main = new Main("", "", folderOuputPath, keyType, keyContent, algorithm, "", "", type, "generate Key",
+        Main main = new Main("", "", folderOutputPath, keyType, keyContent, algorithm, "", "", type, "generate Key",
                 modeOP, false);
         progressBar.progressProperty().bind(main.progressProperty());
         startButton.setDisable(true);
