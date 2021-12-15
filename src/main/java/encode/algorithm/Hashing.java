@@ -14,27 +14,26 @@ public class Hashing {
 
     }
 
-    public String hashFile(String fileName, String algo) throws Exception {
+    public String hashFile(String source, String algo) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
         byte[] buffer = new byte[1024];
         int count = 0;
-        MessageDigest mess = MessageDigest.getInstance(algo, "BC");
-        FileInputStream bis = new FileInputStream(fileName);
+        MessageDigest md = MessageDigest.getInstance(algo, "BC");
+        FileInputStream bis = new FileInputStream(source);
         while ((count = bis.read(buffer)) > 0) {
-            mess.update(buffer, 0, count);
+            md.update(buffer, 0, count);
         }
         bis.close();
-        byte[] hash = mess.digest();
+        byte[] hash = md.digest();
         return new String(Hex.encode(hash));
 
     }
 
-    public String hashPlainText(String input, String algo) throws Exception {
+    public String hashPlainText(String plainText, String algo) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
-        MessageDigest mess = MessageDigest.getInstance(algo, "BC");
-        byte[] hash = mess.digest(input.getBytes(StandardCharsets.UTF_8));
-        String sha256hex = new String(Hex.encode(hash));
-        return sha256hex;
+        MessageDigest md = MessageDigest.getInstance(algo, "BC");
+        byte[] hash = md.digest(plainText.getBytes(StandardCharsets.UTF_8));
+        return new String(Hex.encode(hash));
 
     }
 

@@ -27,7 +27,6 @@ public class Main extends Task<String> {
 
     }
 
-    @Override
     protected String call() throws Exception {
         String result = null;
         updateProgress(1, 2);
@@ -56,9 +55,10 @@ public class Main extends Task<String> {
             } else {
                 result = (hashing.hashPlainText(plainText, algorithm));
             }
-        } else {
+            
+        } else 
             result = KeyStore.generatingKey(type, keyType, keyContent, dest, algorithm);
-        }
+        
 
         updateProgress(2, 2);
         return result;
