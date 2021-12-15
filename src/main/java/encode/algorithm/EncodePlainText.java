@@ -68,7 +68,7 @@ public class EncodePlainText {
             String mode, String padding) throws Exception {
 
         Key key = null;
-        // modeOP ==1 => Encypt
+        // modeOP ==1 => Encrypt
         if (modeOP == 1) {
             // create iv PlainText
             SecureRandom random = new SecureRandom();

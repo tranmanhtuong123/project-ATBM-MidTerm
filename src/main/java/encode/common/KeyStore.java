@@ -150,7 +150,7 @@ public class KeyStore {
     public static Key keyASYM(String keyFilePath, String algo, int modeOP) throws Exception {
         byte[] bytes = Files.readAllBytes(Paths.get(keyFilePath));
         Key key = null;
-        // modeOP ==1 => Encypt
+        // modeOP ==1 => Encrypt
         if (modeOP == 1) {
             X509EncodedKeySpec keySpec = new X509EncodedKeySpec(bytes);
             KeyFactory keyFactory = KeyFactory.getInstance(algo, "BC");

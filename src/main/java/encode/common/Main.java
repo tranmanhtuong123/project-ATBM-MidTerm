@@ -1,12 +1,8 @@
 package encode.common;
 
-import java.security.Security;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
 import encode.algorithm.EncodeFile;
-import encode.algorithm.Hashing;
 import encode.algorithm.EncodePlainText;
+import encode.algorithm.Hashing;
 import javafx.concurrent.Task;
 
 public class Main extends Task<String> {
@@ -16,7 +12,6 @@ public class Main extends Task<String> {
 
     public Main(String source, String plainText, String dest, String keyType, String keyContent,
             String algorithm, String mode, String padding, String type, String button, int modeOP, boolean ifFile) {
-        Security.addProvider(new BouncyCastleProvider());
         this.source = source;
         this.plainText = plainText;
         this.dest = dest;
@@ -32,18 +27,14 @@ public class Main extends Task<String> {
 
     }
 
-    public Main() {
-
-    }
-
     @Override
     protected String call() throws Exception {
-        String result = "";
+        String result = null;
         updateProgress(1, 2);
 
         if (button.equals("cryptography")) {
             if (ifFile) {
-                // modeOP ==1 => Encypt
+                // modeOP ==1 => Encrypt
                 if (modeOP == 1) {
                     EncodeFile.encrypt(source, dest, keyType, keyContent, algorithm, mode, padding);
                 } else {
@@ -51,7 +42,7 @@ public class Main extends Task<String> {
                 }
             } else {
                 if (modeOP == 1) {
-                    // modeOP ==1 => Encypt
+                    // modeOP ==1 => Encrypt
                     result = EncodePlainText.encrypt(plainText, keyType, keyContent, algorithm, mode, padding);
                 } else {
                     result = EncodePlainText.decrypt(plainText, keyType, keyContent, algorithm, mode, padding);
