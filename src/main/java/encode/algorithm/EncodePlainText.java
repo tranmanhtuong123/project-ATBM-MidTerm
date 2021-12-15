@@ -97,7 +97,7 @@ public class EncodePlainText {
             cipher.init(modeOP, key, ivParameterSpec);
         } else if (Warehouse.listPBEAlgo.contains(algo)) {
             byte[] salt = new byte[8];
-            PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 42);
+            PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 10000);
             cipher.init(modeOP, key, pbeParamSpec);
         } else {
             cipher.init(modeOP, key);

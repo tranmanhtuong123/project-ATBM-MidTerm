@@ -85,7 +85,7 @@ public class EncodeFile {
 
         Key key = null;
         byte[] iv = new byte[16];
-        // modeOP ==1 => Encypt
+        // modeOP ==1 => Encrypt
         if (modeOP == 1) {
             // create iv PlainText
             SecureRandom secureRandom = SecureRandom.getInstanceStrong();
@@ -123,7 +123,7 @@ public class EncodeFile {
             cipher.init(modeOP, key, ivParameterSpec);
         } else if (Warehouse.listPBEAlgo.contains(algo)) {
             byte[] salt = new byte[8];
-            PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 42);
+            PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 10000);
             cipher.init(modeOP, key, pbeParamSpec);
         } else {
             cipher.init(modeOP, key);
