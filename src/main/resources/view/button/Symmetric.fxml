@@ -16,11 +16,11 @@
       <Label fx:id="keyFileLabel" layoutX="249.0" layoutY="95.0" text="PlainText" textFill="WHITE" />
       <Label fx:id="inputFileLabel" layoutX="249.0" layoutY="142.0" text="Input File" textFill="WHITE" />
       <TextField fx:id="inputFileTextField" editable="false" layoutX="333.0" layoutY="138.0" prefHeight="25.0" prefWidth="140.0" />
-      <Button fx:id="inputFileButton" layoutX="494.0" layoutY="138.0" mnemonicParsing="false" onAction="#openInputFile" prefHeight="17.0" prefWidth="54.0" text="Browse" />
+      <Button fx:id="inputFileButton" layoutX="492.0" layoutY="138.0" mnemonicParsing="false" onAction="#openInputFile" prefHeight="25.0" prefWidth="58.0" text="Browse" />
       <Label fx:id="outputFileLabel" layoutX="249.0" layoutY="192.0" text="Output Folder" textFill="WHITE" />
       <TextField fx:id="outputTextField" editable="false" layoutX="333.0" layoutY="188.0" prefHeight="25.0" prefWidth="140.0" />
-      <Button fx:id="outputFileButton" layoutX="494.0" layoutY="188.0" mnemonicParsing="false" onAction="#openOutputFile" text="Browse" />
-      <Button fx:id="keyFileButton" layoutX="494.0" layoutY="91.0" mnemonicParsing="false" onAction="#openKeyFile" prefHeight="17.0" prefWidth="54.0" text="Browse" visible="false" />
+      <Button fx:id="outputFileButton" layoutX="492.0" layoutY="188.0" mnemonicParsing="false" onAction="#openOutputFile" prefHeight="25.0" prefWidth="58.0" text="Browse" />
+      <Button fx:id="keyFileButton" layoutX="491.0" layoutY="91.0" mnemonicParsing="false" onAction="#openKeyFile" prefHeight="25.0" prefWidth="56.0" text="Browse" visible="false" />
       <Button fx:id="startButton" layoutX="252.0" layoutY="248.0" mnemonicParsing="false" onAction="#start" text="Start" />
       <Text fill="WHITE" layoutX="277.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symmetric">
          <font>
