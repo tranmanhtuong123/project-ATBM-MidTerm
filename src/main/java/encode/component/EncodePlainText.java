@@ -32,7 +32,7 @@ public class EncodePlainText {
         byte[] encrypted = cipher.doFinal(clean);
         byte[] encryptedIVAndText = encrypted;
         if (Warehouse.listSymmetricAlgo.contains(algo)) {
-            if (Warehouse.listIVRequired.contains(mode) || keyType.equals("XTC")) {
+            if (Warehouse.listIVRequired.contains(mode)) {
                 encryptedIVAndText = new byte[Warehouse.ivSize + encrypted.length];
                 System.arraycopy(Warehouse.iv, 0, encryptedIVAndText, 0, Warehouse.ivSize);
                 System.arraycopy(encrypted, 0, encryptedIVAndText, Warehouse.ivSize, encrypted.length);
@@ -49,7 +49,7 @@ public class EncodePlainText {
         byte[] encryptedTextBytes = Base64.getDecoder().decode(encodedPlanText);
         byte[] encryptedBytes = encryptedTextBytes;
         if (Warehouse.listSymmetricAlgo.contains(algo)) {
-            if (Warehouse.listIVRequired.contains(mode) || keyType.equals("XTC")) {
+            if (Warehouse.listIVRequired.contains(mode)) {
 
                 int encryptedSize = encryptedTextBytes.length - Warehouse.ivSize;
                 encryptedBytes = new byte[encryptedSize];
