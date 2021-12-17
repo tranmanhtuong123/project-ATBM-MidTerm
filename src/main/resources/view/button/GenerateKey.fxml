@@ -29,12 +29,12 @@
          </font></Button>
       <Pane layoutX="14.0" layoutY="12.0" prefHeight="219.0" prefWidth="385.0" style="-fx-border-color: white;">
          <children>
-            <Label layoutX="16.0" layoutY="80.0" text="Type" textFill="WHITE" />
-            <ComboBox fx:id="typeCombobox" layoutX="56.0" layoutY="76.0" onAction="#keyTypeAlgoSelect" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="16.0" layoutY="58.0" text="Type" textFill="WHITE" />
+            <ComboBox fx:id="typeCombobox" layoutX="56.0" layoutY="54.0" onAction="#keyTypeAlgoSelect" prefHeight="25.0" prefWidth="100.0" />
             <Label layoutX="177.0" layoutY="58.0" text="Algorithms" textFill="WHITE" />
             <ComboBox fx:id="algoCombobox" layoutX="253.0" layoutY="54.0" prefHeight="25.0" prefWidth="100.0" />
-            <Label fx:id="keyTypeLabel" layoutX="182.0" layoutY="98.0" text="Key Type" textFill="WHITE" />
-            <ComboBox fx:id="keySizeCombobox" layoutX="253.0" layoutY="94.0" onAction="#keyTypeSelect" prefHeight="25.0" prefWidth="100.0" />
+            <Label fx:id="keyTypeLabel" layoutX="5.0" layoutY="98.0" text="Key Type" textFill="WHITE" />
+            <ComboBox fx:id="keySizeCombobox" layoutX="56.0" layoutY="94.0" onAction="#keyTypeSelect" prefHeight="25.0" prefWidth="100.0" />
             <Label fx:id="inputFileLabel" layoutX="16.0" layoutY="140.0" text="File Key Name" textFill="WHITE" />
             <TextField fx:id="inputFileTextField" layoutX="119.0" layoutY="136.0" prefHeight="25.0" prefWidth="154.0" />
             <Label fx:id="outputFileLabel" layoutX="16.0" layoutY="182.0" text="File Output Name" textFill="WHITE" />
@@ -45,6 +45,8 @@
                </font>
             </Text>
             <Button fx:id="outputFileButton" layoutX="299.0" layoutY="178.0" mnemonicParsing="false" onAction="#openOutputFile" text="Browse" />
+            <ComboBox fx:id="keyLengthComboBox" layoutX="253.0" layoutY="94.0" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="177.0" layoutY="101.0" text="Key Length" textFill="WHITE" />
          </children>
       </Pane>
       <Button fx:id="startButton" layoutX="82.0" layoutY="243.0" mnemonicParsing="false" onAction="#start" prefHeight="25.0" prefWidth="48.0" text="Start" />

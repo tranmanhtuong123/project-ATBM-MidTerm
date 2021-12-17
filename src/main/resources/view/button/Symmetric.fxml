@@ -15,22 +15,6 @@
       <TextField fx:id="keyFileTextField" layoutX="333.0" layoutY="91.0" prefHeight="25.0" prefWidth="140.0" />
       <Label fx:id="keyFileLabel" layoutX="249.0" layoutY="95.0" text="PlainText" textFill="WHITE" />
       <Label fx:id="inputFileLabel" layoutX="249.0" layoutY="142.0" text="Input File" textFill="WHITE" />
-      <Pane layoutX="14.0" layoutY="20.0" prefHeight="218.0" prefWidth="214.0" style="-fx-border-color: white;">
-         <children>
-            <RadioButton fx:id="isEncryptCB" layoutX="13.0" layoutY="7.0" mnemonicParsing="false" text="Encrypt" textFill="WHITE" />
-            <RadioButton fx:id="isDecryptCB" layoutX="13.0" layoutY="39.0" mnemonicParsing="false" text="Decrypt" textFill="WHITE" />
-            <RadioButton fx:id="isFile" layoutX="117.0" layoutY="7.0" mnemonicParsing="false" text="File" textFill="WHITE" />
-            <RadioButton fx:id="isPlainText" layoutX="117.0" layoutY="39.0" mnemonicParsing="false" text="PlainText" textFill="WHITE" />
-            <Label layoutX="7.0" layoutY="76.0" text="Algorithms" textFill="WHITE" />
-            <ComboBox fx:id="algoCombobox" layoutX="88.0" layoutY="72.0" prefHeight="25.0" prefWidth="113.0" />
-            <Label fx:id="keyTypeLabel" layoutX="13.0" layoutY="110.0" text="Key Type" textFill="WHITE" />
-            <ComboBox fx:id="keySizeCombobox" layoutX="88.0" layoutY="106.0" onAction="#keyTypeSelect" prefHeight="25.0" prefWidth="113.0" />
-            <Label layoutX="21.0" layoutY="144.0" text="Mode" textFill="WHITE" />
-            <ComboBox fx:id="modeCombobox" layoutX="88.0" layoutY="140.0" prefHeight="25.0" prefWidth="113.0" />
-            <Label layoutX="15.0" layoutY="176.0" text="Padding" textFill="WHITE" />
-            <ComboBox fx:id="paddingCombobox" layoutX="88.0" layoutY="172.0" prefHeight="25.0" prefWidth="113.0" />
-         </children>
-      </Pane>
       <TextField fx:id="inputFileTextField" editable="false" layoutX="333.0" layoutY="138.0" prefHeight="25.0" prefWidth="140.0" />
       <Button fx:id="inputFileButton" layoutX="494.0" layoutY="138.0" mnemonicParsing="false" onAction="#openInputFile" prefHeight="17.0" prefWidth="54.0" text="Browse" />
       <Label fx:id="outputFileLabel" layoutX="249.0" layoutY="192.0" text="Output Folder" textFill="WHITE" />
@@ -45,5 +29,23 @@
       </Text>
       <Button fx:id="backButton" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#back" text="Back to GenerateKey" />
       <ProgressBar fx:id="progressBar" layoutX="323.0" layoutY="252.0" prefHeight="18.0" prefWidth="113.0" progress="0.0" />
+      <Pane layoutX="14.0" layoutY="20.0" prefHeight="218.0" prefWidth="214.0" style="-fx-border-color: white;">
+         <children>
+            <RadioButton fx:id="isEncryptCB" layoutX="13.0" layoutY="7.0" mnemonicParsing="false" text="Encrypt" textFill="WHITE" />
+            <RadioButton fx:id="isDecryptCB" layoutX="13.0" layoutY="39.0" mnemonicParsing="false" text="Decrypt" textFill="WHITE" />
+            <RadioButton fx:id="isFile" layoutX="117.0" layoutY="7.0" mnemonicParsing="false" text="File" textFill="WHITE" />
+            <RadioButton fx:id="isPlainText" layoutX="117.0" layoutY="39.0" mnemonicParsing="false" text="PlainText" textFill="WHITE" />
+            <Label layoutX="7.0" layoutY="67.0" text="Algorithms" textFill="WHITE" />
+            <ComboBox fx:id="algoCombobox" layoutX="88.0" layoutY="63.0" prefHeight="25.0" prefWidth="113.0" />
+            <Label fx:id="keyTypeLabel" layoutX="12.0" layoutY="98.0" text="Key Type" textFill="WHITE" />
+            <ComboBox fx:id="keySizeCombobox" layoutX="88.0" layoutY="93.0" onAction="#keyTypeSelect" prefHeight="25.0" prefWidth="113.0" />
+            <Label layoutX="19.0" layoutY="129.0" text="Mode" textFill="WHITE" />
+            <ComboBox fx:id="modeCombobox" layoutX="88.0" layoutY="124.0" prefHeight="25.0" prefWidth="113.0" />
+            <Label layoutX="14.0" layoutY="189.0" text="Padding" textFill="WHITE" />
+            <ComboBox fx:id="paddingCombobox" layoutX="88.0" layoutY="185.0" prefHeight="25.0" prefWidth="113.0" />
+            <ComboBox fx:id="keyLengthComboBox" layoutX="88.0" layoutY="155.0" prefHeight="25.0" prefWidth="113.0" />
+            <Label layoutX="5.0" layoutY="159.0" text="Key Length" textFill="WHITE" />
+         </children>
+      </Pane>
    </children>
 </Pane>

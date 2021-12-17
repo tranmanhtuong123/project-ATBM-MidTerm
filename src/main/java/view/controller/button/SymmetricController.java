@@ -39,7 +39,7 @@ import javafx.stage.FileChooser;
 public class SymmetricController implements Initializable {
     public static String fileChooseDetailDefualt;
     @FXML
-    ComboBox<String> algoCombobox, keySizeCombobox, modeCombobox, paddingCombobox;
+    ComboBox<String> algoCombobox, keySizeCombobox, modeCombobox, paddingCombobox, keyLengthComboBox;
     @FXML
     TextField keyFileTextField, inputFileTextField, outputTextField;
     @FXML
@@ -109,6 +109,8 @@ public class SymmetricController implements Initializable {
         modeCombobox.getSelectionModel().selectFirst();
         paddingCombobox.getItems().addAll(Warehouse.listDefualtPadding);
         paddingCombobox.getSelectionModel().selectFirst();
+        keyLengthComboBox.getItems().addAll(Warehouse.listKeyLengthSYM);
+        keyLengthComboBox.getSelectionModel().selectFirst();
 
     }
 

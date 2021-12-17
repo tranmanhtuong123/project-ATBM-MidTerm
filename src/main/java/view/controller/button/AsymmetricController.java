@@ -37,7 +37,7 @@ import javafx.stage.FileChooser;
 
 public class AsymmetricController implements Initializable {
     @FXML
-    ComboBox<String> algoCombobox, keySizeCombobox, modeCombobox, paddingCombobox;
+    ComboBox<String> algoCombobox, keySizeCombobox, modeCombobox, paddingCombobox, keyLengthComboBox;
     @FXML
     TextField keyFileTextField, inputFileTextField, outputTextField;
     @FXML
@@ -102,6 +102,8 @@ public class AsymmetricController implements Initializable {
         modeCombobox.getSelectionModel().selectFirst();
         paddingCombobox.getItems().addAll(Warehouse.listRSAPadding);
         paddingCombobox.getSelectionModel().selectFirst();
+        keyLengthComboBox.getItems().addAll(Warehouse.listKeyLengthASYM);
+        keyLengthComboBox.getSelectionModel().selectFirst();
 
     }
 

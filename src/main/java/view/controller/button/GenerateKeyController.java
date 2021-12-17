@@ -34,7 +34,7 @@ import javafx.stage.FileChooser;
 
 public class GenerateKeyController implements Initializable {
     @FXML
-    ComboBox<String> algoCombobox, keySizeCombobox, typeCombobox;
+    ComboBox<String> algoCombobox, keySizeCombobox, typeCombobox, keyLengthComboBox;
     @FXML
     TextField keyFileTextField, inputFileTextField, outputTextField;
     @FXML
@@ -59,6 +59,8 @@ public class GenerateKeyController implements Initializable {
         keySizeCombobox.getSelectionModel().selectFirst();
         algoCombobox.getItems().addAll(Warehouse.listASymmetricAlgo);
         algoCombobox.getSelectionModel().selectFirst();
+        keyLengthComboBox.getItems().addAll(Warehouse.listKeyLengthASYM);
+        keyLengthComboBox.getSelectionModel().selectFirst();
 
     }
 
@@ -174,18 +176,25 @@ public class GenerateKeyController implements Initializable {
             keyType = typeCombobox.getValue().toString();
             algoCombobox.getItems().clear();
             keySizeCombobox.getItems().clear();
+            keyLengthComboBox.getItems().clear();
             if (keyType.equals("Asymmetric")) {
                 algoCombobox.getItems().addAll(Warehouse.listASymmetricAlgo);
                 keySizeCombobox.getItems().addAll(Warehouse.listKeyTypeRSA);
+                keyLengthComboBox.getItems().addAll(Warehouse.listKeyLengthASYM);
+                keyLengthComboBox.setVisible(true);
             } else if (keyType.equals("Symmetric")) {
                 keySizeCombobox.getItems().addAll(Warehouse.listKeyTypeSYM);
                 algoCombobox.getItems().addAll(Warehouse.listSymmetricAlgo);
+                keyLengthComboBox.getItems().addAll(Warehouse.listKeyLengthSYM);
+                keyLengthComboBox.setVisible(true);
             } else {
                 keySizeCombobox.getItems().addAll(Warehouse.listKeyTypePBE);
                 algoCombobox.getItems().addAll(Warehouse.listPBEAlgo);
+                keyLengthComboBox.setVisible(false);
             }
             algoCombobox.getSelectionModel().selectFirst();
             keySizeCombobox.getSelectionModel().selectFirst();
+            keyLengthComboBox.getSelectionModel().selectFirst();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
