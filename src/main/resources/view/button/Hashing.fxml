@@ -39,7 +39,7 @@
       <Label fx:id="inputFileLabel" layoutX="247.0" layoutY="108.0" text="Input File" textFill="WHITE" />
       <Button fx:id="inputFileButton" layoutX="482.0" layoutY="104.0" mnemonicParsing="false" onAction="#openInputFile" text="Browse" />
       <Label fx:id="outputFileLabel" layoutX="247.0" layoutY="167.0" text="Result" textFill="WHITE" />
-      <Button fx:id="outputFileButton" layoutX="484.0" layoutY="163.0" mnemonicParsing="false" onAction="#openOutputFile" text="Coppy" />
+      <Button fx:id="outputFileButton" layoutX="484.0" layoutY="163.0" mnemonicParsing="false" onAction="#openOutputFile" text="Copy" />
       <TextField fx:id="outputTextField" editable="false" layoutX="313.0" layoutY="163.0" prefHeight="25.0" prefWidth="140.0" />
    </children>
 </Pane>

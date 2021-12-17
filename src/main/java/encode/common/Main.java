@@ -1,8 +1,8 @@
 package encode.common;
 
-import encode.algorithm.EncodeFile;
-import encode.algorithm.EncodePlainText;
-import encode.algorithm.Hashing;
+import encode.component.EncodeFile;
+import encode.component.EncodePlainText;
+import encode.component.Hashing;
 import javafx.concurrent.Task;
 
 public class Main extends Task<String> {

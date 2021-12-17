@@ -1,4 +1,4 @@
-package encode.algorithm;
+package encode.component;
 
 import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;

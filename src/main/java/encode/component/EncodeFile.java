@@ -1,4 +1,4 @@
-package encode.algorithm;
+package encode.component;
 
 import java.io.File;
 import java.io.FileInputStream;

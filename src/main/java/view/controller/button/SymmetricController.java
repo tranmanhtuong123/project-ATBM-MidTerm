@@ -92,7 +92,7 @@ public class SymmetricController implements Initializable {
                 } else {
                     inputFileButton.setVisible(false);
                     inputFileTextField.setEditable(true);
-                    outputFileButton.setText("Coppy");
+                    outputFileButton.setText("Copy");
                     inputFileLabel.setText("Input Text");
                     outputFileLabel.setText("Output Text");
                     keySizeCombobox.getItems().addAll(Warehouse.listKeyTypePlainText);

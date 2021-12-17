@@ -1,4 +1,4 @@
-package encode.algorithm;
+package encode.component;
 
 import java.security.Key;
 import java.security.SecureRandom;

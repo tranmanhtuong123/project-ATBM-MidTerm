@@ -7,9 +7,9 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import encode.algorithm.Hashing;
 import encode.common.Main;
 import encode.common.Warehouse;
+import encode.component.Hashing;
 import view.App;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

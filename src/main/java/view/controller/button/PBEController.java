@@ -87,7 +87,7 @@ public class PBEController implements Initializable {
                     inputFileTextField.setEditable(false);
                 } else {
                     inputFileButton.setVisible(false);
-                    outputFileButton.setText("Coppy");
+                    outputFileButton.setText("Copy");
                     inputFileLabel.setText("Input Text");
                     outputFileLabel.setText("Output Text");
                     inputFileTextField.setEditable(true);

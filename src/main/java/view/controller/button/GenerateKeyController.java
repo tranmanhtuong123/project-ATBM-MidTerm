@@ -162,7 +162,7 @@ public class GenerateKeyController implements Initializable {
 
                 inputFileLabel.setText("PlainText");
                 outputFileLabel.setText("Result");
-                outputFileButton.setText("Coppy");
+                outputFileButton.setText("Copy");
             }
         } catch (Exception e) {
         }
