@@ -120,6 +120,7 @@ public class PBEController implements Initializable {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         progressBar.progressProperty().bind(main.progressProperty());
         main.setOnSucceeded(evt -> {
+            progressBar.setStyle("-fx-accent: palegreen");
             if (!ifFile) {
                 outputTextField.setText(main.getValue());
                 startButton.setDisable(false);

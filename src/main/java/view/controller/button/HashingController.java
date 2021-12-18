@@ -106,6 +106,7 @@ public class HashingController implements Initializable {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         progressBar.progressProperty().bind(main.progressProperty());
         main.setOnSucceeded(evt -> {
+            progressBar.setStyle("-fx-accent: palegreen");
             outputTextField.setText(main.getValue());
             startButton.setDisable(false);
         });

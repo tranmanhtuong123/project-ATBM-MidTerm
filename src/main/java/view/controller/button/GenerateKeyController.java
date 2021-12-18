@@ -78,6 +78,7 @@ public class GenerateKeyController implements Initializable {
         startButton.setDisable(true);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         main.setOnSucceeded(evt -> {
+            progressBar.setStyle("-fx-accent: palegreen");
             if (!main.getValue().equals("")) {
                 outputTextField.setText(main.getValue());
             } else {
@@ -183,9 +184,9 @@ public class GenerateKeyController implements Initializable {
                 keyLengthComboBox.getItems().addAll(Warehouse.listKeyLengthASYM);
                 keyLengthComboBox.setVisible(true);
             } else if (keyType.equals("Symmetric")) {
+                keyLengthComboBox.getItems().addAll(Warehouse.listKeyLengthSYM);
                 keySizeCombobox.getItems().addAll(Warehouse.listKeyTypeSYM);
                 algoCombobox.getItems().addAll(Warehouse.listSymmetricAlgo);
-                keyLengthComboBox.getItems().addAll(Warehouse.listKeyLengthSYM);
                 keyLengthComboBox.setVisible(true);
             } else {
                 keySizeCombobox.getItems().addAll(Warehouse.listKeyTypePBE);
