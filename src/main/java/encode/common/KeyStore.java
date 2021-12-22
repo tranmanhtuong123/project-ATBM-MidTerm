@@ -75,8 +75,6 @@ public class KeyStore {
                 return "";
             }
 
-        } else {
-            key = keyPBE(keyContent, algo);
         }
         String encodedKey = Base64.getEncoder().encodeToString(key.getEncoded());
 

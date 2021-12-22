@@ -1,12 +1,12 @@
 module javafxApp {
 	requires javafx.controls;
 	requires javafx.fxml;
+	requires javafx.media;
 	requires org.bouncycastle.provider;
 	requires org.apache.commons.io;
-	requires javafx.media;
 	requires org.kordamp.ikonli.core;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.ikonli.fontawesome;
+	requires org.kordamp.ikonli.javafx;
+	requires org.kordamp.ikonli.fontawesome;
 
 	opens view to javafx.fxml;
 

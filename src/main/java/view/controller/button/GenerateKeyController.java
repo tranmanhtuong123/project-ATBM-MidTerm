@@ -38,7 +38,7 @@ public class GenerateKeyController implements Initializable {
     @FXML
     TextField keyFileTextField, inputFileTextField, outputTextField;
     @FXML
-    Label keyFileLabel, keyTypeLabel, inputFileLabel, outputFileLabel;
+    Label keyFileLabel, keyTypeLabel, inputFileLabel, outputFileLabel, keyLengthLabel;
     @FXML
     Button keyFileButton, inputFileButton, outputFileButton, startButton;
     @FXML
@@ -188,10 +188,7 @@ public class GenerateKeyController implements Initializable {
                 keySizeCombobox.getItems().addAll(Warehouse.listKeyTypeSYM);
                 algoCombobox.getItems().addAll(Warehouse.listSymmetricAlgo);
                 keyLengthComboBox.setVisible(true);
-            } else {
-                keySizeCombobox.getItems().addAll(Warehouse.listKeyTypePBE);
-                algoCombobox.getItems().addAll(Warehouse.listPBEAlgo);
-                keyLengthComboBox.setVisible(false);
+
             }
             algoCombobox.getSelectionModel().selectFirst();
             keySizeCombobox.getSelectionModel().selectFirst();

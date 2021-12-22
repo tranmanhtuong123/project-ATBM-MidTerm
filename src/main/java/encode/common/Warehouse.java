@@ -42,7 +42,7 @@ public class Warehouse {
         // Key typte Symmetric
         public static List<String> listKeyTypeFile = Arrays.asList("PlainText", "Password", "PasswordHASH", "File Key");
         // GenerateKey
-        public static List<String> listGenerateKey = Arrays.asList("Asymmetric", "Symmetric", "PBE");
+        public static List<String> listGenerateKey = Arrays.asList("Asymmetric", "Symmetric");
         public static List<String> listKeyTypeRSA = Arrays.asList("File Key");
         public static List<String> listKeyTypePBE = Arrays.asList("Password");
         public static List<String> listKeyTypeSYM = Arrays.asList("PlainText", "PasswordHASH", "File Key");

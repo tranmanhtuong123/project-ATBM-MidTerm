@@ -46,7 +46,7 @@
             </Text>
             <Button fx:id="outputFileButton" layoutX="299.0" layoutY="178.0" mnemonicParsing="false" onAction="#openOutputFile" text="Browse" />
             <ComboBox fx:id="keyLengthComboBox" layoutX="253.0" layoutY="94.0" prefHeight="25.0" prefWidth="100.0" />
-            <Label layoutX="177.0" layoutY="101.0" text="Key Length" textFill="WHITE" />
+            <Label fx:id="keyLengthLabel" layoutX="177.0" layoutY="101.0" text="Key Length" textFill="WHITE" />
          </children>
       </Pane>
       <Button fx:id="startButton" layoutX="82.0" layoutY="243.0" mnemonicParsing="false" onAction="#start" prefHeight="25.0" prefWidth="48.0" text="Start" />
