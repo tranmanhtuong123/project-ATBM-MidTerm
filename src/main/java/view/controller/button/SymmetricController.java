@@ -9,7 +9,6 @@ import java.util.concurrent.Executors;
 
 import encode.common.Main;
 import encode.common.Warehouse;
-import view.App;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -32,9 +31,9 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import view.App;
 
 public class SymmetricController implements Initializable {
     public static String fileChooseDetailDefualt;
@@ -131,7 +130,6 @@ public class SymmetricController implements Initializable {
         progressBar.progressProperty().bind(main.progressProperty());
         startButton.setDisable(true);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-
         main.setOnSucceeded(evt -> {
             progressBar.setStyle("-fx-accent: palegreen");
             if (!ifFile) {
@@ -140,16 +138,11 @@ public class SymmetricController implements Initializable {
             startButton.setDisable(false);
         });
         main.setOnFailed(evt -> {
-            progressBar.applyCss();
-            Text text = (Text) progressBar.lookup(".text.percentage");
-            text.setText("Fail");
-            progressBar.setStyle("-fx-accent: red");
-
             Alert alert = new Alert(AlertType.CONFIRMATION, main.getException().getMessage(), ButtonType.YES);
             alert.showAndWait();
             startButton.setDisable(false);
+            main.getException().printStackTrace();
         });
-
         executorService.submit(main);
 
     }
@@ -220,7 +213,7 @@ public class SymmetricController implements Initializable {
     @FXML
     private void back(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
-        Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
+        Pane pane = FXMLLoader.load(App.class.getResource("controller/button/GenerateKey.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
         pane.setLayoutX(0);

@@ -7,8 +7,9 @@ module javafxApp {
 	requires org.kordamp.ikonli.core;
 	requires org.kordamp.ikonli.javafx;
 	requires org.kordamp.ikonli.fontawesome;
+    requires javafx.graphics;
 
-	opens view to javafx.fxml;
+    opens view to javafx.fxml;
 
 	exports view;
 

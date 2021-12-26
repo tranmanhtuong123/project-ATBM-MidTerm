@@ -47,7 +47,7 @@ public class Warehouse {
         public static List<String> listKeyTypePBE = Arrays.asList("Password");
         public static List<String> listKeyTypeSYM = Arrays.asList("PlainText", "PasswordHASH", "File Key");
         // Key length
-        public static List<String> listKeyLengthASYM = Arrays.asList("512", "1024", "2048");
+        public static List<String> listKeyLengthASYM = Arrays.asList("1024", "2048");
         public static List<String> listKeyLengthSYM = Arrays.asList("128", "192", "256");
 
 }

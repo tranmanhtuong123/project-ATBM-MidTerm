@@ -15,6 +15,7 @@ public class Hashing {
     }
 
     public String hashFile(String source, String algo) throws Exception {
+
         Security.addProvider(new BouncyCastleProvider());
         byte[] buffer = new byte[1024];
         int count = 0;
@@ -25,15 +26,18 @@ public class Hashing {
         }
         bis.close();
         byte[] hash = md.digest();
-        return new String(Hex.encode(hash));
+        String result = new String(Hex.encode(hash));
+        return result;
 
     }
 
     public String hashPlainText(String plainText, String algo) throws Exception {
+
         Security.addProvider(new BouncyCastleProvider());
         MessageDigest md = MessageDigest.getInstance(algo, "BC");
         byte[] hash = md.digest(plainText.getBytes(StandardCharsets.UTF_8));
-        return new String(Hex.encode(hash));
+        String result = new String(Hex.encode(hash));
+        return result;
 
     }
 

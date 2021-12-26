@@ -28,9 +28,8 @@ public class Main extends Task<String> {
     }
 
     protected String call() throws Exception {
-        String result = null;
         updateProgress(1, 2);
-
+        String result = "";
         if (button.equals("cryptography")) {
             if (ifFile) {
                 // modeOP ==1 => Encrypt
@@ -55,13 +54,13 @@ public class Main extends Task<String> {
             } else {
                 result = (hashing.hashPlainText(plainText, algorithm));
             }
-            
-        } else 
-            result = KeyStore.generatingKey(type, keyType, keyContent, dest, algorithm);
-        
 
+        } else {
+            result = KeyStore.generatingKey(type, keyType, keyContent, dest, algorithm);
+        }
         updateProgress(2, 2);
         return result;
+
     }
 
 }

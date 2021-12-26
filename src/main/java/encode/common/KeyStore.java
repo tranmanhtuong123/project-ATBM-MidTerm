@@ -25,13 +25,11 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class KeyStore {
 
-    static int keyLength = 256;
-
     public static String generatingKey(String type, String keyType, String keyContent, String output, String algo)
             throws Exception {
+
         Key key = null;
         String keyPair = output + File.separator + keyContent;
-
         if (type.equals("Asymmetric")) {
 
             KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
@@ -83,8 +81,8 @@ public class KeyStore {
 
     // Symmetric
     public static Key keySYM(String keyType, String keyContent, String algo, int modeOP) throws Exception {
+        
         Key secretKey = null;
-
         switch (keyType) {
             case "PlainText":
                 byte[] decodedKey = Base64.getDecoder().decode(keyContent);
@@ -93,7 +91,7 @@ public class KeyStore {
 
             case "Password":
                 SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
-                KeySpec keySpec = new PBEKeySpec(keyContent.toCharArray(), Warehouse.iv, 10000, keyLength);
+                KeySpec keySpec = new PBEKeySpec(keyContent.toCharArray(), Warehouse.iv, 10000, 256);
                 byte[] secret = factory.generateSecret(keySpec).getEncoded();
                 secretKey = new SecretKeySpec(secret, algo);
                 break;
@@ -112,40 +110,47 @@ public class KeyStore {
         return secretKey;
     }
 
-    public static Key keySYMRSA(String keyFile, String algo, int modeOP, byte[] iv, OutputStream out,
-            InputStream in) throws Exception {
+    public static Key keySYMRSA(String keyFile, String algo, int modeOP, byte[] iv, OutputStream output,
+            InputStream input) throws Exception {
+
         byte[] bytes = Files.readAllBytes(Paths.get(keyFile));
         KeyGenerator kgen = KeyGenerator.getInstance(algo, "BC");
         kgen.init(128);
         SecretKey secretKey = kgen.generateKey();
         Key key = null;
-        if (modeOP == 1) {
-            X509EncodedKeySpec ks = new X509EncodedKeySpec(bytes);
-            KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
-            key = kf.generatePublic(ks);
-            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding", "BC");
-            cipher.init(modeOP, key);
-            byte[] b = cipher.doFinal(secretKey.getEncoded());
-            out.write(b);
-            out.write(iv);
-        } else {
-            PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(bytes);
-            KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
-            key = kf.generatePrivate(ks);
-            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding", "BC");
-            cipher.init(modeOP, key);
-            byte[] b = new byte[keyLength];
-            in.read(b);
-            byte[] keyb = cipher.doFinal(b);
-            secretKey = new SecretKeySpec(keyb, algo);
-            in.read(iv);
-            Warehouse.iv = iv;
+        try {
+            if (modeOP == 1) {
+                X509EncodedKeySpec ks = new X509EncodedKeySpec(bytes);
+                KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
+                key = kf.generatePublic(ks);
+                Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding", "BC");
+                cipher.init(modeOP, key);
+                byte[] b = cipher.doFinal(secretKey.getEncoded());
+                output.write(b);
+                output.write(iv);
+            } else {
+                PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(bytes);
+                KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
+                key = kf.generatePrivate(ks);
+                Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding", "BC");
+                cipher.init(modeOP, key);
+                byte[] b = new byte[256];
+                input.read(b);
+                byte[] keyb = cipher.doFinal(b);
+                secretKey = new SecretKeySpec(keyb, algo);
+                input.read(iv);
+                Warehouse.iv = iv;
+            }
+        } catch (Exception e) {
+            output.close();
+            input.close();
         }
         return secretKey;
     }
 
     // Asymmetric
     public static Key keyASYM(String keyFilePath, String algo, int modeOP) throws Exception {
+        
         byte[] bytes = Files.readAllBytes(Paths.get(keyFilePath));
         Key key = null;
         // modeOP ==1 => Encrypt
@@ -162,40 +167,47 @@ public class KeyStore {
     }
 
     public static Key keyASYMRSA(String keyFile, String algo, String mode, String padding, int modeOP, byte[] iv,
-            OutputStream out, InputStream in) throws Exception {
+            OutputStream output, InputStream input) throws Exception {
+
         byte[] bytes = Files.readAllBytes(Paths.get(keyFile));
         KeyGenerator kgen = KeyGenerator.getInstance("AES", "BC");
         kgen.init(128);
         SecretKey secretKey = kgen.generateKey();
-        Key key = null;
         String cipherInstance = algo + "/" + mode + "/" + padding;
-        if (modeOP == 1) {
-            X509EncodedKeySpec ks = new X509EncodedKeySpec(bytes);
-            KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
-            key = kf.generatePublic(ks);
-            Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
-            cipher.init(modeOP, key);
-            byte[] b = cipher.doFinal(secretKey.getEncoded());
-            out.write(b);
-            out.write(iv);
-        } else {
-            PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(bytes);
-            KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
-            key = kf.generatePrivate(ks);
-            Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
-            cipher.init(modeOP, key);
-            byte[] b = new byte[keyLength];
-            in.read(b);
-            byte[] keyb = cipher.doFinal(b);
-            secretKey = new SecretKeySpec(keyb, algo);
-            in.read(iv);
-            Warehouse.iv = iv;
+        Key key = null;
+        try { 
+            if (modeOP == 1) {
+                X509EncodedKeySpec ks = new X509EncodedKeySpec(bytes);
+                KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
+                key = kf.generatePublic(ks);
+                Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
+                cipher.init(modeOP, key);
+                byte[] b = cipher.doFinal(secretKey.getEncoded());
+                output.write(b);
+                output.write(iv);
+            } else {
+                PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(bytes);
+                KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
+                key = kf.generatePrivate(ks);
+                Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
+                cipher.init(modeOP, key);
+                byte[] b = new byte[256];
+                input.read(b);
+                byte[] keyb = cipher.doFinal(b);
+                secretKey = new SecretKeySpec(keyb, algo);
+                input.read(iv);
+                Warehouse.iv = iv;
+            }
+        } catch (Exception e) {
+            output.close();
+            input.close();
         }
         return secretKey;
     }
 
     // PBE
     public static Key keyPBE(String password, String algo) throws Exception {
+        
         PBEKeySpec keySpec = new PBEKeySpec(password.toCharArray());
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(algo, "BC");
         SecretKey key = keyFactory.generateSecret(keySpec);

@@ -20,9 +20,9 @@
             <ComboBox fx:id="algoCombobox" layoutX="80.0" layoutY="72.0" prefHeight="25.0" prefWidth="125.0" />
             <RadioButton fx:id="isFile" layoutX="22.0" layoutY="31.0" mnemonicParsing="false" text="File" textFill="WHITE" />
             <RadioButton fx:id="isPlainText" layoutX="131.0" layoutY="31.0" mnemonicParsing="false" text="PlainText" textFill="WHITE" />
-            <ImageView fitHeight="87.0" fitWidth="207.0" layoutX="4.0" layoutY="129.0">
+            <ImageView fitHeight="87.0" fitWidth="207.0" layoutX="4.0" layoutY="126.0">
                <image>
-                  <Image url="@img/images.jpg" />
+                  <Image url="@../img/1.jpg" />
                </image>
             </ImageView>
          </children>

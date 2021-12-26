@@ -24,21 +24,18 @@ public class App extends Application {
             580, 650, false, false);
 
     public static void main(String[] args) {
-        launch();
+        Application.launch(App.class, args);
 
     }
 
     public void start(Stage stage) throws IOException {
-
         new SplashScreen(stage, splash_image, () -> {
             try {
                 showGame();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-
     }
 
     private void showGame() throws IOException {
@@ -50,11 +47,9 @@ public class App extends Application {
         mainWindow.setX(bounds.getMinX() + bounds.getWidth() / 2 - 580 / 2);
         mainWindow.setY(bounds.getMinY() + bounds.getHeight() / 2 - 650 / 2);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Main.fxml"));
-        // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
         AnchorPane root = fxmlLoader.load();
-        Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
-        // Pane pane = FXMLLoader.load(getClass().getResource("button/GenerateKey.fxml"));
+        Pane pane = FXMLLoader.load(App.class.getResource("controller/button/GenerateKey.fxml"));
         root.getChildren().add(pane);
         pane.setLayoutX(0);
         pane.setLayoutY(327);

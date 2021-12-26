@@ -24,12 +24,37 @@ public class EncodePlainText {
             String padding) throws Exception {
 
         Security.addProvider(new BouncyCastleProvider());
-        byte[] clean = plainText.getBytes();
+        Key key = null;
+        byte[] textBytes = plainText.getBytes();
+        SecureRandom random = new SecureRandom();
 
-        Cipher cipher = CipherPlainText(keyType, keyContent, clean, Cipher.ENCRYPT_MODE, algo, mode,
-                padding);
+        random.nextBytes(Warehouse.iv);
+        if (Warehouse.listSymmetricAlgo.contains(algo)) {
+            key = KeyStore.keySYM(keyType, keyContent, algo, Cipher.ENCRYPT_MODE);
+        } else if (Warehouse.listPBEAlgo.contains(algo)) {
+            key = KeyStore.keyPBE(keyContent, algo);
+        } else {
+            key = KeyStore.keyASYM(keyContent, algo, Cipher.ENCRYPT_MODE);
+        }
 
-        byte[] encrypted = cipher.doFinal(clean);
+        String cipherInstance = algo + "/" + mode + "/" + padding;
+        if (Warehouse.listPBEAlgo.contains(algo)) {
+            cipherInstance = algo;
+        }
+
+        Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
+        if (Warehouse.listIVRequired.contains(mode)) {
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(Warehouse.iv);
+            cipher.init(Cipher.ENCRYPT_MODE, key, ivParameterSpec);
+        } else if (Warehouse.listPBEAlgo.contains(algo)) {
+            byte[] salt = new byte[8];
+            PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 10000);
+            cipher.init(Cipher.ENCRYPT_MODE, key, pbeParamSpec);
+        } else {
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+        }
+
+        byte[] encrypted = cipher.doFinal(textBytes);
         byte[] encryptedIVAndText = encrypted;
         if (Warehouse.listSymmetricAlgo.contains(algo)) {
             if (Warehouse.listIVRequired.contains(mode)) {
@@ -46,44 +71,25 @@ public class EncodePlainText {
             String mode, String padding) throws Exception {
 
         Security.addProvider(new BouncyCastleProvider());
-        byte[] encryptedTextBytes = Base64.getDecoder().decode(encodedPlanText);
-        byte[] encryptedBytes = encryptedTextBytes;
+        Key key = null;
+        byte[] textBytes = Base64.getDecoder().decode(encodedPlanText);
+        byte[] encryptedBytes = textBytes;
         if (Warehouse.listSymmetricAlgo.contains(algo)) {
             if (Warehouse.listIVRequired.contains(mode)) {
-
-                int encryptedSize = encryptedTextBytes.length - Warehouse.ivSize;
+                int encryptedSize = textBytes.length - Warehouse.ivSize;
                 encryptedBytes = new byte[encryptedSize];
-                System.arraycopy(encryptedTextBytes, Warehouse.ivSize, encryptedBytes, 0, encryptedSize);
+                System.arraycopy(textBytes, Warehouse.ivSize, encryptedBytes, 0, encryptedSize);
 
             }
         }
-        Cipher cipher = CipherPlainText(keyType, keyContent, encryptedTextBytes, Cipher.DECRYPT_MODE,
-                algo, mode, padding);
-        byte[] decoded = cipher.doFinal(encryptedBytes);
-        return new String(decoded);
 
-    }
-
-    public static Cipher CipherPlainText(String keyType, String keyContent, byte[] input, int modeOP, String algo,
-            String mode, String padding) throws Exception {
-
-        Key key = null;
-        // modeOP ==1 => Encrypt
-        if (modeOP == 1) {
-            // create iv PlainText
-            SecureRandom random = new SecureRandom();
-            random.nextBytes(Warehouse.iv);
-        } else {
-            Warehouse.iv = new byte[Warehouse.ivSize];
-            System.arraycopy(input, 0, Warehouse.iv, 0, Warehouse.iv.length);// input = "encrypted iv TextBytes"
-        }
-
+        System.arraycopy(textBytes, 0, Warehouse.iv, 0, Warehouse.iv.length);
         if (Warehouse.listSymmetricAlgo.contains(algo)) {
-            key = KeyStore.keySYM(keyType, keyContent, algo, modeOP);
+            key = KeyStore.keySYM(keyType, keyContent, algo, Cipher.DECRYPT_MODE);
         } else if (Warehouse.listPBEAlgo.contains(algo)) {
             key = KeyStore.keyPBE(keyContent, algo);
         } else {
-            key = KeyStore.keyASYM(keyContent, algo, modeOP);
+            key = KeyStore.keyASYM(keyContent, algo, Cipher.DECRYPT_MODE);
         }
 
         String cipherInstance = algo + "/" + mode + "/" + padding;
@@ -94,14 +100,18 @@ public class EncodePlainText {
         Cipher cipher = Cipher.getInstance(cipherInstance, "BC");
         if (Warehouse.listIVRequired.contains(mode)) {
             IvParameterSpec ivParameterSpec = new IvParameterSpec(Warehouse.iv);
-            cipher.init(modeOP, key, ivParameterSpec);
+            cipher.init(Cipher.DECRYPT_MODE, key, ivParameterSpec);
         } else if (Warehouse.listPBEAlgo.contains(algo)) {
             byte[] salt = new byte[8];
             PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 10000);
-            cipher.init(modeOP, key, pbeParamSpec);
+            cipher.init(Cipher.DECRYPT_MODE, key, pbeParamSpec);
         } else {
-            cipher.init(modeOP, key);
+            cipher.init(Cipher.DECRYPT_MODE, key);
         }
-        return cipher;
+
+        byte[] decoded = cipher.doFinal(encryptedBytes);
+        return new String(decoded);
+
     }
+
 }

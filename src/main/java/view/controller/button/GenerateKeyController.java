@@ -9,7 +9,6 @@ import java.util.concurrent.Executors;
 
 import encode.common.Main;
 import encode.common.Warehouse;
-import view.App;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import view.App;
 
 public class GenerateKeyController implements Initializable {
     @FXML
@@ -74,6 +74,7 @@ public class GenerateKeyController implements Initializable {
 
         Main main = new Main("", "", folderOutputPath, keyType, keyContent, algorithm, "", "", type, "generate Key",
                 modeOP, false);
+
         progressBar.progressProperty().bind(main.progressProperty());
         startButton.setDisable(true);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -82,17 +83,18 @@ public class GenerateKeyController implements Initializable {
             if (!main.getValue().equals("")) {
                 outputTextField.setText(main.getValue());
             } else {
-                outputTextField.setText("Accomplished");
+                outputTextField.setText("Completed!");
             }
             startButton.setDisable(false);
         });
-        main.setOnFailed(evt -> {
+        main.setOnFailed(evt -> {        
             Alert alert = new Alert(AlertType.CONFIRMATION, main.getException().getMessage(), ButtonType.YES);
             alert.showAndWait();
             startButton.setDisable(false);
+            main.getException().printStackTrace();
         });
         executorService.submit(main);
-        startButton.setDisable(false);
+
     }
 
     @FXML
@@ -151,7 +153,7 @@ public class GenerateKeyController implements Initializable {
                 inputFileLabel.setVisible(true);
                 inputFileTextField.setVisible(true);
                 inputFileLabel.setText("File Key Name");
-                outputFileLabel.setText("Output Folder");
+                outputFileLabel.setText("File Output Name");
                 outputFileButton.setText("Browse");
 
             } else {
@@ -201,7 +203,7 @@ public class GenerateKeyController implements Initializable {
     @FXML
     private void openSymmetric(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
-        Pane pane = FXMLLoader.load(App.class.getResource("button/Symmetric.fxml"));
+        Pane pane = FXMLLoader.load(App.class.getResource("controller/button/Symmetric.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
         pane.setLayoutX(0);
@@ -211,7 +213,7 @@ public class GenerateKeyController implements Initializable {
     @FXML
     private void openAsymmetric(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
-        Pane pane = FXMLLoader.load(App.class.getResource("button/Asymmetric.fxml"));
+        Pane pane = FXMLLoader.load(App.class.getResource("controller/button/Asymmetric.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
         pane.setLayoutX(0);
@@ -221,7 +223,7 @@ public class GenerateKeyController implements Initializable {
     @FXML
     private void openPBE(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
-        Pane pane = FXMLLoader.load(App.class.getResource("button/PBE.fxml"));
+        Pane pane = FXMLLoader.load(App.class.getResource("controller/button/PBE.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
         pane.setLayoutX(0);
@@ -231,7 +233,7 @@ public class GenerateKeyController implements Initializable {
     @FXML
     private void openHashing(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
-        Pane pane = FXMLLoader.load(App.class.getResource("button/Hashing.fxml"));
+        Pane pane = FXMLLoader.load(App.class.getResource("controller/button/Hashing.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
         pane.setLayoutX(0);

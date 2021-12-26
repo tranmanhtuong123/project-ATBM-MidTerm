@@ -9,7 +9,6 @@ import java.util.concurrent.Executors;
 
 import encode.common.Main;
 import encode.common.Warehouse;
-import view.App;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -34,6 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import view.App;
 
 public class AsymmetricController implements Initializable {
     @FXML
@@ -131,12 +131,10 @@ public class AsymmetricController implements Initializable {
             }
             startButton.setDisable(false);
         });
-
-        main.setOnFailed(evt -> {
+        main.setOnFailed(evt -> {           
             Alert alert = new Alert(AlertType.CONFIRMATION, main.getException().getMessage(), ButtonType.YES);
             alert.showAndWait();
             startButton.setDisable(false);
-
             main.getException().printStackTrace();
         });
         executorService.submit(main);
@@ -209,7 +207,7 @@ public class AsymmetricController implements Initializable {
     @FXML
     private void back(ActionEvent event) throws IOException {
         AnchorPane root = (AnchorPane) pane1.getParent();
-        Pane pane = FXMLLoader.load(App.class.getResource("button/GenerateKey.fxml"));
+        Pane pane = FXMLLoader.load(App.class.getResource("controller/button/GenerateKey.fxml"));
         root.getChildren().remove(pane1);
         root.getChildren().add(pane);
         pane.setLayoutX(0);
